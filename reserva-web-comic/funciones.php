@@ -8,7 +8,7 @@
     }
 
     function validarEdad(string $edad){
-        return $edad != "" || $edad >= 1 && $edad <= 120 ;
+        return $edad != "" && $edad >= 1 && $edad <= 120;
     }
 
     function validarCantidad(string $cantidad){
@@ -40,10 +40,15 @@
     }
 
     function calcularTotal(string $tipoEntrada, int $cantidad, string $dia){
-    $precioBase = calcularPrecioBase($tipoEntrada);
-    $suplemento = aplicarSuplementoDia($dia);
-    $precioUnitario = $precioBase + $suplemento;
-    $total = $precioUnitario * $cantidad;
-    return $total;
+        $precioBase = calcularPrecioBase($tipoEntrada);
+        $suplemento = aplicarSuplementoDia($dia);
+        $precioUnitario = $precioBase + $suplemento;
+        $total = $precioUnitario * $cantidad;
+
+        if($cantidad >= 4){
+            $total = $total * 0.90;
+        }
+        
+        return $total;
     }
 ?>

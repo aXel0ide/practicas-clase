@@ -61,13 +61,13 @@
             <h2>Reserva web para El Salón del Cómic</h2>
             <form method="post" action="">
                 <label for="nombre">Nombre Completo</label>
-                <input type="text" name="nombre" id="nombre">
+                <input type="text" name="nombre" id="nombre" value="<?php echo $_POST["nombre"] ?? ""; ?>">
 
                 <label for="correo">Correo electrónico</label>
-                <input type="email" name="correo" id="correo">
+                <input type="email" name="correo" id="correo" value="<?php echo $_POST["correo"] ?? ""; ?>">
 
                 <label for="edad">Edad</label>
-                <input type="number" name="edad" id="edad" min="1" max="120">
+                <input type="number" name="edad" id="edad" min="1" max="120" value="<?php echo $_POST["edad"] ?? ""; ?>">
 
                 <label for="tipoEntrada">Tipo de Entrada</label>
                 <select name="tipoEntrada" id="tipoEntrada">
@@ -77,7 +77,7 @@
                 </select>
 
                 <label for="cantidad">Cantidad</label>
-                <input type="number" name="cantidad" id="cantidad">
+                <input type="number" name="cantidad" id="cantidad" value="<?php echo $_POST["cantidad"] ?? ""; ?>">
 
                 <p>Día de asistencia:</p>
                 <label>
@@ -94,7 +94,7 @@
                 </label>
 
                 <label for="observaciones">Observaciones</label>
-                <textarea name="observaciones" id="observaciones" rows="10" placeholder="Escribe las observaciones que sean necesarias."></textarea>
+                <textarea name="observaciones" id="observaciones" rows="10" placeholder="Escribe las observaciones que sean necesarias."><?php echo $_POST["observaciones"] ?? ""; ?></textarea>
 
                 <button type="submit">Enviar Reserva</button>
             </form>
