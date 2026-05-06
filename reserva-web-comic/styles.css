@@ -1,0 +1,246 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    color: #1b1b1b;
+    line-height: 1.6;
+    background:
+        radial-gradient(circle at 10px 10px, rgba(0,0,0,0.12) 2px, transparent 3px),
+        linear-gradient(135deg, #ffde59, #ff914d, #ff4fd8, #38b6ff);
+    background-size: 24px 24px, cover;
+}
+
+/* HEADER */
+header{
+    text-align: center;
+    padding: 55px 20px;
+    background: linear-gradient(135deg, #ff3131, #ffde59, #38b6ff);
+    border-bottom: 6px solid #111;
+    box-shadow: 0 8px 0 #111;
+}
+
+header h1{
+    display: inline-block;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    padding: 12px 25px;
+    background: white;
+    border: 5px solid #111;
+    border-radius: 18px;
+    box-shadow: 8px 8px 0 #111;
+    color: #ff3131;
+    text-transform: uppercase;
+    text-shadow: 3px 3px 0 #ffde59;
+}
+
+header p{
+    max-width: 850px;
+    margin: auto;
+    padding: 18px 22px;
+    background: #fff;
+    border: 4px solid #111;
+    border-radius: 15px;
+    box-shadow: 6px 6px 0 #111;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* MAIN */
+main{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding: 60px 20px;
+}
+
+/* FORMULARIO */
+.formulario,
+.resultado{
+    width: 100%;
+    max-width: 720px;
+    background: #ffffff;
+    padding: 35px;
+    border: 5px solid #111;
+    border-radius: 22px;
+    box-shadow: 10px 10px 0 #111;
+}
+
+.formulario h2,
+.resultado h2{
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: #111;
+    text-transform: uppercase;
+    background: #ffde59;
+    border: 4px solid #111;
+    border-radius: 15px;
+    padding: 12px;
+    box-shadow: 5px 5px 0 #111;
+}
+
+/* LABELS */
+form label,
+form p{
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    font-weight: 900;
+    color: #111;
+    text-transform: uppercase;
+}
+
+/* CAMPOS */
+input,
+select,
+textarea{
+    width: 100%;
+    padding: 14px;
+    border: 4px solid #111;
+    border-radius: 14px;
+    background: #fff7c2;
+    color: #111;
+    font-size: 1rem;
+    font-weight: bold;
+    outline: none;
+    transition: 0.2s;
+    box-shadow: 4px 4px 0 #111;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    background: #dff6ff;
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0 #111;
+}
+
+/* RADIO BUTTONS */
+label input[type="radio"]{
+    width: auto;
+    margin-right: 10px;
+    accent-color: #ff3131;
+    box-shadow: none;
+}
+
+label:has(input[type="radio"]){
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+    background: #38b6ff;
+    color: #111;
+    padding: 13px;
+    border: 4px solid #111;
+    border-radius: 14px;
+    box-shadow: 4px 4px 0 #111;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+label:has(input[type="radio"]):hover{
+    background: #ffde59;
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0 #111;
+}
+
+/* TEXTAREA */
+textarea{
+    resize: vertical;
+    min-height: 150px;
+}
+
+/* BOTÓN */
+button{
+    width: 100%;
+    margin-top: 30px;
+    padding: 16px;
+    border: 5px solid #111;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #ff3131, #ff914d);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 6px 6px 0 #111;
+    transition: 0.2s;
+}
+
+button:hover{
+    background: linear-gradient(135deg, #38b6ff, #5271ff);
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0 #111;
+}
+
+button:active{
+    transform: translate(2px, 2px);
+    box-shadow: 3px 3px 0 #111;
+}
+
+/* RESULTADOS */
+.resultado{
+    background: #dff6ff;
+}
+
+.resultado p,
+.resultado li{
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.resultado ul{
+    margin-left: 25px;
+}
+
+.resultado.error{
+    background: #ffd6d6;
+}
+
+.resultado.error h2{
+    background: #ff3131;
+    color: white;
+}
+
+/* FOOTER */
+footer{
+    text-align: center;
+    padding: 28px 20px;
+    background: #111;
+    color: white;
+    border-top: 6px solid #ffde59;
+}
+
+footer p{
+    margin: 6px 0;
+    font-weight: bold;
+}
+
+/* RESPONSIVE */
+@media(max-width: 768px){
+
+    header h1{
+        font-size: 2rem;
+    }
+
+    header p{
+        font-size: 1rem;
+    }
+
+    .formulario,
+    .resultado{
+        padding: 24px;
+    }
+
+    .formulario h2,
+    .resultado h2{
+        font-size: 1.5rem;
+    }
+}
