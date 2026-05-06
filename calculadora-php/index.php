@@ -155,7 +155,7 @@
                 <button type="button" id="cientifica">Calculadora Científica</button>
             </div>
 
-            <img src="./calculadora.png" alt="Icono de Calculadora">
+            <img src="./img/calculadora.png" alt="Icono de Calculadora">
         </div>
 
         <form method="post" id="formularioCalculadora">
