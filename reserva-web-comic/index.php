@@ -3,6 +3,7 @@
 
     $errores = [];
     $resultado = "";
+    $codigos_descuento = ["12345", "axel-es-guapete", "juan-cuesta-presidente", "54321"];
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $nombre = $_POST["nombre"];
@@ -12,6 +13,9 @@
         $cantidad = $_POST["cantidad"];
         $dia = $_POST["dia"] ?? "";
         $observaciones = $_POST["observaciones"];
+
+        $codigo_descuento = $_POST["codigo_descuento"] ?? "";
+        $descuento = 0;
 
         if(!validarNombre($nombre)){
             $errores[] = "El nombre no es válido.";
@@ -37,10 +41,24 @@
             $errores[] = "La entrada infantil sólo se permite hasta los 12 años.";
         }
 
-        if(count($errores) === 0){
-            $precioTotal = calcularTotal($tipoEntrada, $cantidad, $dia);
-            $resultado = "Reserva correcta. Total: " . number_format($precioTotal, 2, ",", ".") . " €.";
+        if($codigo_descuento != ""){
+            if(comprobarCodigo($codigo_descuento, $codigos_descuento)){
+                $descuento = 0.8;
+            }else{
+                $errores[] = "Código de descuento no válido.";
+            }
         }
+
+        if(count($errores) === 0){
+            if($descuento == 0.8){
+                $precioTotal = calcularTotal($tipoEntrada, $cantidad, $dia);
+                $precioTotal = $precioTotal * $descuento;
+                $resultado = "Reserva correcta. Total: " . number_format($precioTotal, 2, ",", ".") . " €. Descuento del 0.20% aplicado por código de descuento.";               
+            }else{
+                $precioTotal = calcularTotal($tipoEntrada, $cantidad, $dia);
+                $resultado = "Reserva correcta. Total: " . number_format($precioTotal, 2, ",", ".") . " €.";
+            }
+        }        
     }
 ?>
 <!DOCTYPE html>
@@ -59,7 +77,7 @@
     <main>
         <div class="formulario">
             <h2>Reserva web para El Salón del Cómic</h2>
-            <form method="post" action="">
+            <form method="post" action="#respuesta">
                 <label for="nombre">Nombre Completo</label>
                 <input type="text" name="nombre" id="nombre" value="<?php echo $_POST["nombre"] ?? ""; ?>">
 
@@ -96,30 +114,35 @@
                 <label for="observaciones">Observaciones</label>
                 <textarea name="observaciones" id="observaciones" rows="10" placeholder="Escribe las observaciones que sean necesarias."><?php echo $_POST["observaciones"] ?? ""; ?></textarea>
 
+                <label for="codigo_descuento">Código de Descuento</label>
+                <input type="text" name="codigo_descuento" id="codigo_descuento">
+
                 <button type="submit">Enviar Reserva</button>
             </form>
         </div>
-    <?php if(count($errores) > 0){ ?>
-        <div class="resultado error">
-            <h2>Se han producido errores en tu reserva.</h2>
-            <ul>
-            <?php foreach($errores as $error){ ?>
-                <li><?php echo $error; ?></li>
+        <div id="respuesta">
+            <?php if(count($errores) > 0){ ?>
+                <div class="resultado error">
+                    <h2>Se han producido errores en tu reserva.</h2>
+                    <ul>
+                    <?php foreach($errores as $error){ ?>
+                        <li><?php echo $error; ?></li>
+                    <?php } ?>
+                    </ul>
+                </div>
             <?php } ?>
-            </ul>
+            <?php if($resultado != ""){ ?>
+                <div class="resultado">
+                    <h2>Resumen de la reserva</h2>
+                    <p><?php echo $resultado; ?></p>
+                    <p>Nombre: <?php echo $nombre; ?></p>
+                    <p>Correo: <?php echo $correo; ?></p>
+                    <p>Tipo de entrada: <?php echo $tipoEntrada; ?></p>
+                    <p>Día: <?php echo $dia; ?></p>
+                    <p>Cantidad: <?php echo $cantidad; ?></p>
+                </div>
+            <?php } ?>
         </div>
-    <?php } ?>
-    <?php if($resultado != ""){ ?>
-        <div class="resultado">
-            <h2>Resumen de la reserva</h2>
-            <p><?php echo $resultado; ?></p>
-            <p>Nombre: <?php echo $nombre; ?></p>
-            <p>Correo: <?php echo $correo; ?></p>
-            <p>Tipo de entrada: <?php echo $tipoEntrada; ?></p>
-            <p>Día: <?php echo $dia; ?></p>
-            <p>Cantidad: <?php echo $cantidad; ?></p>
-        </div>
-    <?php } ?>
     </main>
     <footer>
         <p>Página creada por el increible aXel0ide, muchas gracias por su atención JAJA.</p>

@@ -39,6 +39,15 @@
         return 0;
     }
 
+    function comprobarCodigo(string $cod, array $codigos){
+        foreach($codigos as $codigo){
+            if(trim($cod) == $codigo){
+                return true;
+            }
+        }
+        return false;
+    }
+
     function calcularTotal(string $tipoEntrada, int $cantidad, string $dia){
         $precioBase = calcularPrecioBase($tipoEntrada);
         $suplemento = aplicarSuplementoDia($dia);
