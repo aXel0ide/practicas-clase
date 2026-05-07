@@ -9,6 +9,8 @@
         $nombre = $_POST["nombre"];
         $correo = $_POST["correo"];
         $edad = $_POST["edad"];
+        $telefono = $_POST["telefono"];
+
         $tipoEntrada = $_POST["tipoEntrada"];
         $cantidad = $_POST["cantidad"];
         $dia = $_POST["dia"] ?? "";
@@ -16,6 +18,7 @@
 
         $codigo_descuento = $_POST["codigo_descuento"] ?? "";
         $descuento = 0;
+        $acepto = $_POST["acepto"];
 
         if(!validarNombre($nombre)){
             $errores[] = "El nombre no es válido.";
@@ -27,6 +30,10 @@
 
         if(!validarEdad($edad)){
             $errores[] = "La edad no es correcta.";
+        }
+
+        if(!validarTelefono($telefono)){
+            $errores[] = "Número de teléfono no válido.";
         }
 
         if(!validarCantidad($cantidad)){
@@ -47,6 +54,10 @@
             }else{
                 $errores[] = "Código de descuento no válido.";
             }
+        }
+
+        if($acepto == ""){
+            $errores[] = "Debes aceptar las normas del evento.";
         }
 
         if(count($errores) === 0){
@@ -78,44 +89,54 @@
         <div class="formulario">
             <h2>Reserva web para El Salón del Cómic</h2>
             <form method="post" action="#respuesta">
-                <label for="nombre">Nombre Completo</label>
-                <input type="text" name="nombre" id="nombre" value="<?php echo $_POST["nombre"] ?? ""; ?>">
+                <div class="datos_usuario">
+                    <label for="nombre">Nombre Completo</label>
+                    <input type="text" name="nombre" id="nombre" value="<?php echo $_POST["nombre"] ?? ""; ?>">
 
-                <label for="correo">Correo electrónico</label>
-                <input type="email" name="correo" id="correo" value="<?php echo $_POST["correo"] ?? ""; ?>">
+                    <label for="correo">Correo electrónico</label>
+                    <input type="email" name="correo" id="correo" value="<?php echo $_POST["correo"] ?? ""; ?>">
 
-                <label for="edad">Edad</label>
-                <input type="number" name="edad" id="edad" min="1" max="120" value="<?php echo $_POST["edad"] ?? ""; ?>">
+                    <label for="edad">Edad</label>
+                    <input type="number" name="edad" id="edad" min="1" max="120" value="<?php echo $_POST["edad"] ?? ""; ?>">
 
-                <label for="tipoEntrada">Tipo de Entrada</label>
-                <select name="tipoEntrada" id="tipoEntrada">
-                    <option value="general">General</option>
-                    <option value="infantil">Infantil</option>
-                    <option value="premium">Premium</option>
-                </select>
+                    <label for="telefono">Teléfono</label>
+                    <input type="tel" name="telefono" id="telefono" value="<?php echo $_POST["telefono"] ?? ""; ?>">
+                </div>
 
-                <label for="cantidad">Cantidad</label>
-                <input type="number" name="cantidad" id="cantidad" value="<?php echo $_POST["cantidad"] ?? ""; ?>">
+                <div class="datos_entrada">
+                    <label for="tipoEntrada">Tipo de Entrada</label>
+                    <select name="tipoEntrada" id="tipoEntrada">
+                        <option value="general">General</option>
+                        <option value="infantil">Infantil</option>
+                        <option value="premium">Premium</option>
+                    </select>
 
-                <p>Día de asistencia:</p>
-                <label>
-                    <input type="radio" name="dia" value="viernes">Viernes
-                </label>
+                    <label for="cantidad">Cantidad</label>
+                    <input type="number" name="cantidad" id="cantidad" value="<?php echo $_POST["cantidad"] ?? ""; ?>">
 
+                    <p>Día de asistencia:</p>
+                    <label>
+                        <input type="radio" name="dia" value="viernes">Viernes
+                    </label>
+                    
+                    <label>
+                        <input type="radio" name="dia" value="sabado">Sábado
+                    </label>
 
-                <label>
-                    <input type="radio" name="dia" value="sabado">Sábado
-                </label>
-
-                <label>
-                    <input type="radio" name="dia" value="domingo">Domingo
-                </label>
+                    <label>
+                        <input type="radio" name="dia" value="domingo">Domingo
+                    </label>
+                </div>
 
                 <label for="observaciones">Observaciones</label>
                 <textarea name="observaciones" id="observaciones" rows="10" placeholder="Escribe las observaciones que sean necesarias."><?php echo $_POST["observaciones"] ?? ""; ?></textarea>
 
                 <label for="codigo_descuento">Código de Descuento</label>
-                <input type="text" name="codigo_descuento" id="codigo_descuento">
+                <input type="text" name="codigo_descuento" id="codigo_descuento" value="<?php echo $_POST["codigo_descuento"] ?? ""; ?>">
+
+                <label>
+                    Acepto las normas del evento <input type="checkbox" name="acepto" value="acepto" <?php if(($_POST["acepto"] ?? "") == "acepto") echo "checked"; ?>>
+                </label>
 
                 <button type="submit">Enviar Reserva</button>
             </form>
@@ -138,8 +159,20 @@
                     <p>Nombre: <?php echo $nombre; ?></p>
                     <p>Correo: <?php echo $correo; ?></p>
                     <p>Tipo de entrada: <?php echo $tipoEntrada; ?></p>
-                    <p>Día: <?php echo $dia; ?></p>
+                    <p>Día: <?php if($dia == "sabado"){echo $dia . ". Un día perfecto para venir."; } else{ echo $dia; } ?></p>
                     <p>Cantidad: <?php echo $cantidad; ?></p>
+                    <h3>Observaciones</h3>
+                    <div class="observaciones">
+                        <p>
+                            <?php 
+                                if($observaciones == ""){
+                                    echo "Sin observaciones.";
+                                }else{
+                                    echo $observaciones;
+                                }
+                            ?>
+                        </p>
+                    </div>
                 </div>
             <?php } ?>
         </div>

@@ -11,6 +11,10 @@
         return $edad != "" && $edad >= 1 && $edad <= 120;
     }
 
+    function validarTelefono(string $telefono){
+        return $telefono != "" && is_numeric($telefono) && strlen($telefono) == 9; 
+    }
+
     function validarCantidad(string $cantidad){
         return $cantidad != "" && $cantidad >= 1 && $cantidad <=6;
     }
