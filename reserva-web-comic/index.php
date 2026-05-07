@@ -155,13 +155,13 @@
             <?php if($resultado != ""){ ?>
                 <div class="resultado">
                     <h2>Resumen de la reserva</h2>
-                    <p>Tipo de Reserva: <?php if($cantidad == 1){ echo "Reserva Individual"; }else{ echo "Reserva de Grupo"; } ?></p>
-                    <p><?php echo $resultado; ?></p>
-                    <p>Nombre: <?php echo $nombre; ?></p>
-                    <p>Correo: <?php echo $correo; ?></p>
-                    <p>Tipo de entrada: <?php echo $tipoEntrada; ?></p>
-                    <p>Día: <?php if($dia == "sabado"){echo $dia . ". Un día perfecto para venir."; } else{ echo $dia; } ?></p>
-                    <p>Cantidad: <?php echo $cantidad; ?></p>
+                    <p><strong>Tipo de Reserva: </strong><?php if($cantidad == 1){ echo "Reserva Individual"; }else{ echo "Reserva de Grupo"; } ?></p>
+                    <p><strong><?php echo $resultado; ?></strong></p>
+                    <p><strong>Nombre: </strong><?php echo $nombre; ?></p>
+                    <p><strong>Correo: </strong><?php echo $correo; ?></p>
+                    <p><strong>Tipo de entrada: </strong><?php echo $tipoEntrada; ?></p>
+                    <p><strong>Día: </strong><?php if($dia == "sabado"){echo $dia . ". Un día perfecto para venir."; } else{ echo $dia; } ?></p>
+                    <p><strong>Cantidad: </strong><?php echo $cantidad; ?></p>
                     <h3>Observaciones</h3>
                     <div class="observaciones">
                         <p>
