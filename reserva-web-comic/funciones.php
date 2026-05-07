@@ -53,12 +53,23 @@
     }
 
     function calcularTotal(string $tipoEntrada, int $cantidad, string $dia){
-        $precioBase = calcularPrecioBase($tipoEntrada);
-        $suplemento = aplicarSuplementoDia($dia);
-        $precioUnitario = $precioBase + $suplemento;
+        if($tipoEntrada == "premium" && $dia == "sabado"){
+            $precioBase = 25;
+            $suplemento = aplicarSuplementoDia($dia);
+            $precioUnitario = $precioBase + $suplemento;
+        }else{
+            $precioBase = calcularPrecioBase($tipoEntrada);
+            $suplemento = aplicarSuplementoDia($dia);
+            $precioUnitario = $precioBase + $suplemento;
+        }
+
         $total = $precioUnitario * $cantidad;
 
         if($cantidad >= 4){
+            $total = $total * 0.95;
+        }
+
+        if($cantidad >= 5){
             $total = $total * 0.90;
         }
         

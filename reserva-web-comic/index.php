@@ -64,7 +64,7 @@
             if($descuento == 0.8){
                 $precioTotal = calcularTotal($tipoEntrada, $cantidad, $dia);
                 $precioTotal = $precioTotal * $descuento;
-                $resultado = "Reserva correcta. Total: " . number_format($precioTotal, 2, ",", ".") . " €. Descuento del 0.20% aplicado por código de descuento.";               
+                $resultado = "Reserva correcta. Total: " . number_format($precioTotal, 2, ",", ".") . " €. Descuento del 20% aplicado por código de descuento.";               
             }else{
                 $precioTotal = calcularTotal($tipoEntrada, $cantidad, $dia);
                 $resultado = "Reserva correcta. Total: " . number_format($precioTotal, 2, ",", ".") . " €.";
@@ -155,6 +155,7 @@
             <?php if($resultado != ""){ ?>
                 <div class="resultado">
                     <h2>Resumen de la reserva</h2>
+                    <p>Tipo de Reserva: <?php if($cantidad == 1){ echo "Reserva Individual"; }else{ echo "Reserva de Grupo"; } ?></p>
                     <p><?php echo $resultado; ?></p>
                     <p>Nombre: <?php echo $nombre; ?></p>
                     <p>Correo: <?php echo $correo; ?></p>
