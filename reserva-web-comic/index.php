@@ -16,12 +16,17 @@
         $dia = $_POST["dia"] ?? "";
         $observaciones = $_POST["observaciones"];
 
+        $ciudad = $_POST["ciudad"];
         $codigo_descuento = $_POST["codigo_descuento"] ?? "";
         $descuento = 0;
         $acepto = $_POST["acepto"];
 
         if(!validarNombre($nombre)){
             $errores[] = "El nombre no es válido.";
+        }
+
+        if(buscarNumeros($nombre)){
+            $errores[] = "El nombre no puede contener números.";
         }
 
         if(!validarCorreo($correo)){
@@ -126,6 +131,14 @@
                     <label>
                         <input type="radio" name="dia" value="domingo">Domingo
                     </label>
+
+                    <label for="ciudad">Ciudad</label>
+                    <select name="ciudad" id="ciudad">
+                        <option value="Madrid">Madrid</option>
+                        <option value="Barcelona">Barcelona</option>
+                        <option value="Córdoba">Córdoba</option>
+                    </select>
+                        
                 </div>
 
                 <label for="observaciones">Observaciones</label>
@@ -156,12 +169,14 @@
                 <div class="resultado">
                     <h2>Resumen de la reserva</h2>
                     <p><strong>Tipo de Reserva: </strong><?php if($cantidad == 1){ echo "Reserva Individual"; }else{ echo "Reserva de Grupo"; } ?></p>
-                    <p><strong><?php echo $resultado; ?></strong></p>
                     <p><strong>Nombre: </strong><?php echo $nombre; ?></p>
-                    <p><strong>Correo: </strong><?php echo $correo; ?></p>
+                    <p><strong>Correo: </strong><?php echo strtolower($correo); ?></p>
                     <p><strong>Tipo de entrada: </strong><?php echo $tipoEntrada; ?></p>
-                    <p><strong>Día: </strong><?php if($dia == "sabado"){echo $dia . ". Un día perfecto para venir."; } else{ echo $dia; } ?></p>
+                    <p><strong>Día: </strong><?php if($dia == "sabado"){echo $dia . ". Un día perfecto para venir."; } elseif( $dia == "domingo"){ echo $dia . ". Este es el último día del evento."; } else{ echo $dia; } ?></p>
+                    <p><strong>Ciudad: </strong><?php echo $ciudad; ?></p>
                     <p><strong>Cantidad: </strong><?php echo $cantidad; ?></p>
+                    <p><strong>Precio por entrada: </strong><?php echo calcularPrecioBase($tipoEntrada) ?></p>
+                    <p><strong><?php echo $resultado; ?></strong></p>
                     <h3>Observaciones</h3>
                     <div class="observaciones">
                         <p>

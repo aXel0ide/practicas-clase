@@ -3,6 +3,10 @@
         return trim($nombre) != "" && strlen(trim($nombre)) >= 3;
     }
 
+    function buscarNumeros(string $texto){
+        return preg_match("/[0-9]/", trim($texto)) == 1;
+    }
+
     function validarCorreo(string $correo){
         return filter_var($correo, FILTER_VALIDATE_EMAIL);
     }
