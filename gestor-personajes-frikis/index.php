@@ -39,6 +39,78 @@
             "anio" => 1973,
             "imagen" => "./img/superlopez.jpg",
             "activo" => true
+        ],
+        [
+            "nombre" => "Joker",
+            "universo" => "DC",
+            "tipo" => "Villano",
+            "poder" => "Inteligencia, habilidades de combate, tecnología avanzada",
+            "anio" => 1940,
+            "imagen" => "./img/joker.jpg",
+            "activo" => false
+        ],
+        [
+            "nombre" => "Rhino",
+            "universo" => "Marvel",
+            "tipo" => "Villano",
+            "poder" => "Fuerza, resistencia, armadura de rinoceronte",
+            "anio" => 1975,
+            "imagen" => "./img/rhino.jpg",
+            "activo" => true
+        ],
+        [
+            "nombre" => "Capitán América",
+            "universo" => "Marvel",
+            "tipo" => "Héroe",
+            "poder" => "Fuerza, agilidad, habilidades de combate, escudo indestructible",
+            "anio" => 1941,
+            "imagen" => "./img/capitanamerica.jpg",
+            "activo" => true
+        ],
+        [
+            "nombre" => "Thanos",
+            "universo" => "Marvel",
+            "tipo" => "Villano",
+            "poder" => "Fuerza, resistencia, inteligencia, manipulación de la realidad",
+            "anio" => 1973,
+            "imagen" => "./img/thanos.jpg",
+            "activo" => true
+        ],
+        [
+            "nombre" => "Harley Quinn",
+            "universo" => "DC",
+            "tipo" => "Villano",
+            "poder" => "Habilidades de combate, uso de armas",
+            "anio" => 1992,
+            "imagen" => "./img/harleyquinn.jpg",
+            "activo" => false
+        ],
+        [
+            "nombre" => "Magneto",
+            "universo" => "Marvel",
+            "tipo" => "Villano",
+            "poder" => "Control de metal, magnetismo, control sobre campos electromagnéticos",
+            "anio" => 1963,
+            "imagen" => "./img/magneto.jpg",
+            "activo" => true
+        ],
+        [
+            "nombre" => "Lex Luthor",
+            "universo" => "DC",
+            "tipo" => "Villano",
+            "poder" => "Inteligencia, habilidades de combate, tecnología avanzada",
+            "anio" => 1940,
+            "imagen" => "./img/lexluthor.jpg",
+            "activo" => false
+        ],
+        [
+            "nombre" => "Iron Man",
+            "universo" => "Marvel",
+            "tipo" => "Héroe",
+            "poder" => "Inteligencia, habilidades de combate, tecnología avanzada",
+            "anio" => 1963,
+            "imagen" => "./img/ironman.jpg",
+            "activo" => true
         ]
     ];
 
@@ -158,7 +230,7 @@
             <ul>
                 <?php 
                     foreach($personajes as $personaje){
-                        echo "<li>" . $personaje["nombre"] . " - " . $personaje["universo"] . "- " . $personaje["tipo"] . "</li>";
+                        echo "<li>" . $personaje["nombre"] . " - " . $personaje["universo"] . " - " . $personaje["tipo"] . "</li>";
                     }
                 ?>
             </ul>
