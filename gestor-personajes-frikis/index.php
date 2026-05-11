@@ -79,7 +79,33 @@
         <?php funcionNavegacion($personajes, $indice); ?>
     </nav>
     <main>
-        
+        <form action="post" action="">
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" id="nombre" value="<?php echo $personajeActual["nombre"]; ?>">
+
+            <label for="universo">Universo</label>
+            <input type="text" name="universo" id="universo" value="<?php echo $personajeActual["universo"]; ?>">
+
+            <label for="tipo">Tipo</label>
+            <input type="text" name="tipo" id="tipo" value="<?php echo $personajeActual["tipo"] ?>">
+
+            <label for="poderes">Poderes principales</label>
+            <input type="text" name="poderes" id="poderes" value="<?php echo $personajeActual["poder"] ?>">
+
+            <label for="anio">Año de creación</label>
+            <input type="number" name="anio" id="anio" value="<?php echo $personajeActual["anio"] ?>">
+
+            <label for="imagen">Imagen</label>
+            <input type="text" name="imagen" id="imagen" value="<?php echo $personajeActual["imagen"] ?>">
+
+            <label>
+                <input type="checkbox" name="activo" id="activo" <?php echo $personajeActual["activo"] ? "checked" : ""; ?>> Activo
+            </label>
+
+            <button type="submit" name="accion" value="modificar">Modificar</button>
+            <button type="submit" name="accion" value="añadir">Añadir nuevo</button>
+            <button type="submit" name="accion" value="borrar">Borrar actual</button>
+        </form>
     </main>
     <footer>
         <p>&copy; 2025 Gestor de Personajes Frikis. Todos los derechos reservados.</p>
