@@ -188,30 +188,52 @@
             <p><strong>Película más barata: </strong><?php echo $peliculaBarata["titulo"] . ". Precio: " . number_format($peliculaBarata["precio"], 2, ",", "."); ?>€</p>
 
             <div>
-                <h3>Películas que recomendamos</h3>
-                <ol>
-                    <?php
-                        foreach($videoclub as $pelicula){
-                            if($pelicula["puntuacion"] < 7 || $pelicula["titulo"] == "Shin-chan: Los adultos contraatacan"){
-                                echo "<li>" . $pelicula["titulo"] ."</li>";
-                            }
-                        }
-                    ?>
-                </ol>
+                <h2>Recomendaciones</h2>
+                    <div>
+                        <h3>Películas que recomendamos</h3>
+                        <ol>
+                            <?php
+                                foreach($videoclub as $pelicula){
+                                    if($pelicula["puntuacion"] < 7 || $pelicula["titulo"] == "Shin-chan: Los adultos contraatacan"){
+                                        echo "<li>" . $pelicula["titulo"] ."</li>";
+                                    }
+                                }
+                            ?>
+                        </ol>
+                    </div>
+
+                    <div>
+                        <h3>Películas que NO recomendamos</h3>
+                        <ol>
+                            <?php 
+                                foreach($videoclub as $pelicula){
+                                    if($pelicula["puntuacion"] >= 7 && $pelicula["titulo"] != "Shin-chan: Los adultos contraatacan"){
+                                        echo "<li>" . $pelicula["titulo"] . "</li>";
+                                    }
+                                }
+                            ?>
+                        </ol>
+                    </div>
             </div>
 
             <div>
-                <h3>Películas que NO recomendamos</h3>
+                <h2>Películas de Comedia</h2>
+                <h3>Títulos</h3>
                 <ol>
                     <?php 
+                        $contador = 0;
                         foreach($videoclub as $pelicula){
-                            if($pelicula["puntuacion"] >= 7 && $pelicula["titulo"] != "Shin-chan: Los adultos contraatacan"){
-                                echo "<li>" . $pelicula["titulo"] . "</li>";
+                            if($pelicula["genero"] == "Comedia"){
+                                echo "<li>" . $pelicula["titulo"] .  "</li>";
+                                $contador++;
                             }
                         }
                     ?>
                 </ol>
+                <h3>Número de películas</h3>
+                <p><?php echo $contador; ?></p>
             </div>
+
             <h2>Títulos de las películas</h2>
             <ul>
                 <?php crearLista($videoclub); ?>
