@@ -193,19 +193,22 @@
                         <h3>Películas que recomendamos</h3>
                         <ol>
                             <?php
+                                $cont = 0;
                                 foreach($videoclub as $pelicula){
                                     if($pelicula["puntuacion"] < 7 || $pelicula["titulo"] == "Shin-chan: Los adultos contraatacan"){
                                         echo "<li>" . $pelicula["titulo"] ."</li>";
+                                        $cont++;
                                     }
                                 }
                             ?>
                         </ol>
+                        <?php echo "<p>El número de películas con una puntuación menor a 7 es: " . $cont . " </p>"; ?>
                     </div>
 
                     <div>
                         <h3>Películas que NO recomendamos</h3>
                         <ol>
-                            <?php 
+                            <?php
                                 foreach($videoclub as $pelicula){
                                     if($pelicula["puntuacion"] >= 7 && $pelicula["titulo"] != "Shin-chan: Los adultos contraatacan"){
                                         echo "<li>" . $pelicula["titulo"] . "</li>";
