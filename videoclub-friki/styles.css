@@ -1,0 +1,228 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --fondo: #101014;
+    --panel: #1b1b24;
+    --texto: #f6f2e8;
+    --texto-suave: #c9c2b4;
+    --amarillo: #ffd447;
+    --rosa: #ff4f8b;
+    --cyan: #4dd8ff;
+    --verde: #7ee787;
+    --borde: rgba(255, 255, 255, 0.12);
+    --sombra: 0 24px 70px rgba(0, 0, 0, 0.45);
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--texto);
+    background:
+        radial-gradient(circle at top left, rgba(255, 79, 139, 0.28), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(77, 216, 255, 0.22), transparent 30rem),
+        linear-gradient(135deg, #101014 0%, #171520 48%, #0f1118 100%);
+}
+
+header {
+    padding: 3rem 1.25rem 2rem;
+    text-align: center;
+}
+
+h1 {
+    display: inline-block;
+    margin: 0;
+    padding: 0.65rem 1.2rem;
+    color: #111014;
+    font-size: clamp(2.1rem, 6vw, 4.5rem);
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    background: linear-gradient(90deg, var(--amarillo), #ff8a4d, var(--rosa));
+    border: 4px solid #111014;
+    box-shadow:
+        8px 8px 0 var(--cyan),
+        14px 14px 0 rgba(255, 79, 139, 0.8);
+    transform: rotate(-1.5deg);
+}
+
+main {
+    width: min(1100px, calc(100% - 2rem));
+    margin: 0 auto;
+    padding: 0 0 3rem;
+}
+
+main > div {
+    margin-top: 1.5rem;
+    background: rgba(27, 27, 36, 0.86);
+    border: 1px solid var(--borde);
+    box-shadow: var(--sombra);
+    backdrop-filter: blur(12px);
+}
+
+main > div:first-child {
+    overflow-x: auto;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+table {
+    width: 100%;
+    min-width: 760px;
+    margin-bottom: 1.5rem;
+    border-collapse: collapse;
+}
+
+table:last-child {
+    margin-bottom: 0;
+}
+
+caption {
+    margin-bottom: 0.8rem;
+    color: var(--amarillo);
+    font-size: 1.35rem;
+    font-weight: 700;
+    text-align: left;
+}
+
+thead {
+    color: #121016;
+    background: linear-gradient(90deg, var(--cyan), var(--amarillo));
+}
+
+th,
+td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--borde);
+}
+
+th {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0;
+}
+
+tbody tr {
+    transition: background-color 0.18s ease;
+}
+
+tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.035);
+}
+
+tbody tr:hover {
+    background: rgba(255, 212, 71, 0.12);
+}
+
+td:first-child {
+    color: var(--amarillo);
+    font-weight: 700;
+}
+
+td:nth-child(4) {
+    color: var(--verde);
+    font-weight: 700;
+}
+
+td:last-child {
+    color: var(--cyan);
+    font-weight: 700;
+}
+
+main > div:last-child {
+    position: relative;
+    overflow: hidden;
+    padding: 1.6rem 1.6rem 1.6rem 2rem;
+    border-radius: 8px;
+}
+
+main > div:last-child::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 0.45rem;
+    background: linear-gradient(var(--rosa), var(--amarillo), var(--cyan));
+}
+
+h2 {
+    margin: 1.8rem 0 1.1rem;
+    color: var(--amarillo);
+    font-size: 1.6rem;
+}
+
+main > div:last-child h2:first-child {
+    margin-top: 0;
+}
+
+h3 {
+    margin: 0 0 0.9rem;
+    color: var(--cyan);
+    font-size: 1.25rem;
+}
+
+p {
+    margin: 0.75rem 0;
+    color: var(--texto-suave);
+    font-size: 1.05rem;
+}
+
+strong {
+    color: var(--texto);
+}
+
+main > div:last-child > div {
+    margin-top: 1.2rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+}
+
+ol,
+ul {
+    margin: 0;
+    padding-left: 1.4rem;
+    color: var(--texto-suave);
+}
+
+li {
+    margin: 0.45rem 0;
+    line-height: 1.4;
+}
+
+li::marker {
+    color: var(--rosa);
+    font-weight: 700;
+}
+
+@media (max-width: 650px) {
+    header {
+        padding-top: 2rem;
+    }
+
+    h1 {
+        box-shadow:
+            5px 5px 0 var(--cyan),
+            9px 9px 0 rgba(255, 79, 139, 0.8);
+    }
+
+    main {
+        width: min(100% - 1rem, 1100px);
+    }
+
+    main > div:first-child {
+        padding: 0.75rem;
+    }
+
+    th,
+    td {
+        padding: 0.8rem;
+    }
+
+    main > div:last-child {
+        padding: 1.25rem;
+    }
+}
