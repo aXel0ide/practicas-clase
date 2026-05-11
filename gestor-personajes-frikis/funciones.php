@@ -8,4 +8,28 @@
 
         }
     }
+    
+    function contarActivos(array $personajes){
+        $contador = 0;
+        foreach($personajes as $personaje){
+            if($personaje["activo"]){
+                $contador++;
+            }
+        }
+        return $contador;
+    }
+
+    function contarPorTipo(array $personajes, string $tipoBuscado){
+        $contador = 0;
+        foreach($personajes as $personaje){
+            if($personaje["tipo"] == $tipoBuscado){
+                $contador++;
+            }
+        }
+        return $contador;
+    }
+
+    function obtenerPrimerNombre(array $personajes){
+        return $personajes[0]["nombre"] ?? "No hay personajes";
+    }
 ?>

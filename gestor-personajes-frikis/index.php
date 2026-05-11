@@ -163,6 +163,15 @@
                 ?>
             </ul>
         </div>
+
+        <div class="resumen">
+            <h2>Resumen</h2>
+            <p>Total de personajes: <?php echo count($personajes); ?></p>
+            <p>Personajes activos: <?php echo contarActivos($personajes); ?></p>
+            <p>Héroes: <?php echo contarPorTipo($personajes, "Héroe"); ?></p>
+            <p>Villanos: <?php echo contarPorTipo($personajes, "Villano"); ?></p>
+            <p>Primer personaje: <?php echo obtenerPrimerNombre($personajes); ?></p>
+        </div>
     </main>
     <footer>
         <p>&copy; 2025 Gestor de Personajes Frikis. Todos los derechos reservados.</p>
