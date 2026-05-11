@@ -214,11 +214,7 @@
             </div>
             <h2>Títulos de las películas</h2>
             <ul>
-                <?php 
-                    foreach($videoclub as $pelicula){
-                        echo "<li>" . $pelicula["titulo"] . "</li>";
-                    }
-                ?>
+                <?php crearLista($videoclub); ?>
             </ul>
         </div>
     </main>

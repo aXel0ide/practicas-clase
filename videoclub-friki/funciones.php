@@ -54,4 +54,10 @@
         }
         return $mejorValoradas;
     }
+
+    function crearLista(array $videoclub){
+        foreach($videoclub as $pelicula){
+            echo "<li>" . $pelicula["titulo"] . "</li>";    
+        }
+    }
 ?>
