@@ -1,4 +1,8 @@
 <?php
+
+    require_once "funciones.php";
+
+    // Array de personajes de cómics
     $personajes = [
         [
             "nombre" => "Batman",
@@ -37,6 +41,27 @@
             "activo" => true
         ]
     ];
+
+    $indice = 0; // Índice del personaje actual
+
+    // Si en la URL existe el parámetro "indice", usamos ese valor
+    // para saber qué personaje mostrar.
+    if(isset($_GET["indice"])){
+        $indice = (int) $_GET["indice"];
+    }
+
+    // Si el indice es menor que 0, lo corregimos para que no salga del array
+    if($indice < 0){
+        $indice = 0;
+    }
+
+    // Si el indice es mayor que la últmia posición de array, lo ajustamos al último personaje
+    if($indice >= count($personajes)){
+        $indice = count($personajes) - 1;
+    }
+
+    // Guardamos en esta variable el personaje que corresponde al índice elegido
+    $personajeActual = $personajes[$indice];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -50,8 +75,8 @@
         <h1>Gestor de Personajes Frikis</h1>
         <p>Bienvenido al gestor de personajes frikis.</p>
     </header>
-    <nav>
-
+    <nav class="navegacion">
+        <?php funcionNavegacion($personajes, $indice); ?>
     </nav>
     <main>
         
