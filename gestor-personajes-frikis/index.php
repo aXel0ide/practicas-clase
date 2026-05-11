@@ -62,6 +62,42 @@
 
     // Guardamos en esta variable el personaje que corresponde al índice elegido
     $personajeActual = $personajes[$indice];
+
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $accion = $_POST["accion"] ?? "";
+
+        if($accion == "modificar"){
+            $personajeActual["nombre"] = $_POST["nombre"] ?? $personajeActual["nombre"];
+            $personajeActual["universo"] = $_POST["universo"] ?? $personajeActual["universo"];
+            $personajeActual["tipo"] = $_POST["tipo"] ?? $personajeActual["tipo"];
+            $personajeActual["poder"] = $_POST["poderes"] ?? $personajeActual["poder"];
+            $personajeActual["anio"] = $_POST["anio"] ?? $personajeActual["anio"];
+            $personajeActual["imagen"] = $_POST["imagen"] ?? $personajeActual["imagen"];
+            $personajeActual["activo"] = isset($_POST["activo"]) ? true : false;
+            $personajes[$indice] = $personajeActual;
+        }
+
+        if($accion == "añadir"){
+            $nuevoPersonaje = [
+                "nombre" => $_POST["nombre"] ?? "",
+                "universo" => $_POST["universo"] ?? "",
+                "tipo" => $_POST["tipo"] ?? "",
+                "poder" => $_POST["poderes"] ?? "",
+                "anio" => $_POST["anio"] ?? 0,
+                "imagen" => $_POST["imagen"] ?? "",
+                "activo" => isset($_POST["activo"]) ? true : false
+            ];
+            $personajes[] = $nuevoPersonaje;
+            $indice = count($personajes) - 1; // Ajustamos el índice al nuevo personaje
+            $personajeActual = $nuevoPersonaje; // Mostramos el nuevo personaje
+        }
+
+        if($accion == "borrar"){
+            array_splice($personajes, $indice, 1); // Eliminamos el personaje actual
+            $indice = 0; // Volvemos al primer personaje
+            $personajeActual = $personajes[$indice]; // Mostramos el primer personaje
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -79,7 +115,7 @@
         <?php funcionNavegacion($personajes, $indice); ?>
     </nav>
     <main>
-        <form action="post" action="">
+        <form action="" method="post">
             <label for="nombre">Nombre</label>
             <input type="text" name="nombre" id="nombre" value="<?php echo $personajeActual["nombre"]; ?>">
 
@@ -106,6 +142,26 @@
             <button type="submit" name="accion" value="añadir">Añadir nuevo</button>
             <button type="submit" name="accion" value="borrar">Borrar actual</button>
         </form>
+
+        <div class="tarjeta">
+            <h2><?php echo $personajeActual["nombre"]; ?></h2>
+            <p><strong>Universo:</strong> <?php echo $personajeActual["universo"]; ?></p>
+            <p><strong>Tipo:</strong> <?php echo $personajeActual["tipo"]; ?></p>
+            <p><strong>Poderes:</strong> <?php echo $personajeActual["poder"]; ?></p>
+            <p><strong>Año de creación:</strong> <?php echo $personajeActual["anio"]; ?></p>
+            <p><strong>Activo:</strong> <?php echo $personajeActual["activo"] ? "Sí" : "No"; ?></p>
+        </div>
+
+        <div class="listado">
+            <h2>Listado de Personajes</h2>
+            <ul>
+                <?php 
+                    foreach($personajes as $personaje){
+                        echo "<li>" . $personaje["nombre"] . " - " . $personaje["universo"] . "- " . $personaje["tipo"] . "</li>";
+                    }
+                ?>
+            </ul>
+        </div>
     </main>
     <footer>
         <p>&copy; 2025 Gestor de Personajes Frikis. Todos los derechos reservados.</p>
