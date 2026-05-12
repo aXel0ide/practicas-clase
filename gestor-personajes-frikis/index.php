@@ -221,7 +221,7 @@
             <button type="submit" name="accion" value="borrar">Borrar actual</button>
         </form>
 
-        <div class="tarjeta">
+        <div class="tarjeta <?php echo $personajeActual["activo"] ? "activo" : "inactivo"; ?>">
             <h2><?php echo $personajeActual["nombre"]; ?></h2>
             <p><strong>Universo:</strong> <?php echo $personajeActual["universo"]; ?></p>
             <p><strong>Tipo:</strong> <?php echo $personajeActual["tipo"]; ?></p>
