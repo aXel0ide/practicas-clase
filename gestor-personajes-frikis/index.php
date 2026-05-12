@@ -110,7 +110,7 @@
             "poder" => "Inteligencia, habilidades de combate, tecnología avanzada",
             "anio" => 1963,
             "imagen" => "./img/ironman.jpg",
-            "activo" => true
+            "activo" => false
         ]
     ];
 
@@ -228,6 +228,11 @@
             <p><strong>Poderes:</strong> <?php echo $personajeActual["poder"]; ?></p>
             <p><strong>Año de creación:</strong> <?php echo $personajeActual["anio"]; ?></p>
             <p><strong>Activo:</strong> <?php echo $personajeActual["activo"] ? "Sí" : "No"; ?></p>
+            <?php 
+                if($personajeActual["activo"] == true && $personajeActual["tipo"] == "Héroe"){
+                    echo "<p>¡Es un héroe activo!</p>";
+                }
+            ?>
         </div>
 
         <div class="busqueda">
@@ -309,6 +314,28 @@
             <p>Héroes: <?php echo contarPorTipo($personajes, "Héroe"); ?></p>
             <p>Villanos: <?php echo contarPorTipo($personajes, "Villano"); ?></p>
             <p>Primer personaje: <?php echo obtenerPrimerNombre($personajes); ?></p>
+
+            <?php
+                $resultadoDC = personajesUniverso($personajes, "DC");
+                $resultadoMarvel = personajesUniverso($personajes, "Marvel");
+                $resultadoBruguera = personajesUniverso($personajes, "Bruguera");
+            ?>
+
+            <p>
+                Personajes del universo DC:
+                <?php echo $resultadoDC["contador"] . ". Estos son: " . implode(", ", array_column($resultadoDC["personajes"], "nombre"));?>
+            </p>
+
+            <p>
+                Personajes del universo Marvel:
+                <?php echo $resultadoMarvel["contador"] . ". Estos son: " . implode(", ", array_column($resultadoMarvel["personajes"], "nombre")); ?>
+            </p>
+
+            <p>
+                Personajes del universo Bruguera:
+                <?php echo $resultadoBruguera["contador"] . ". Estos son: " . implode(", ", array_column($resultadoBruguera["personajes"], "nombre")); ?>
+            </p>
+
         </div>
     </main>
     <footer>
