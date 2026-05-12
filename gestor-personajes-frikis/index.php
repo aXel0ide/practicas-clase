@@ -230,12 +230,73 @@
             <p><strong>Activo:</strong> <?php echo $personajeActual["activo"] ? "Sí" : "No"; ?></p>
         </div>
 
+        <div class="busqueda">
+            <h2>Búsqueda de Personajes</h2>
+            <form action="#resultado_busqueda" method="post">
+                <label for="nombre_buscar">Nombre:</label>
+                <input type="text" name="nombre_buscar" id="nombre_buscar">
+                <button type="submit" name="accion" value="buscar">Buscar</button>
+            </form>
+
+
+            <?php
+                if($_SERVER["REQUEST_METHOD"] == "POST" && ($_POST["accion"] ?? "") == "buscar"){
+                    $nombreBuscar = $_POST["nombre_buscar"];
+                    $encontrado = false;
+
+                    foreach($personajes as $personaje){
+                        if(strtolower($personaje["nombre"]) == strtolower($nombreBuscar)){
+                            $encontrado = true;
+
+                            echo "<div class='tarjeta' id='resultado_busqueda'>";
+                            echo "<h2>" . $personaje["nombre"] . "</h2>";
+                            echo "<p><strong>Universo:</strong> " . $personaje["universo"] . "</p>";
+                            echo "<p><strong>Tipo:</strong> " . $personaje["tipo"] . "</p>";
+                            echo "<p><strong>Poderes:</strong> " . $personaje["poder"] . "</p>";
+                            echo "<p><strong>Año de creación:</strong> " . $personaje["anio"] . "</p>";
+                            echo "<p><strong>Activo:</strong> " . ($personaje["activo"] ? "Sí" : "No") . "</p>";
+                            echo "</div>";
+                        }
+                    }
+                    if(!$encontrado){
+                        echo "<p id='resultado_busqueda'>No se encontró ningún personaje con ese nombre.</p>";
+                    }
+                }
+            ?>
+        </div>
+
         <div class="listado">
             <h2>Listado de Personajes</h2>
             <ul>
                 <?php 
                     foreach($personajes as $personaje){
                         echo "<li>" . $personaje["nombre"] . " - " . $personaje["universo"] . " - " . $personaje["tipo"] . "</li>";
+                    }
+                ?>
+            </ul>
+
+            <br>
+
+            <h2>Superhéroes</h2>
+            <ul>
+                <?php 
+                    foreach($personajes as $personaje){
+                        if($personaje["tipo"] == "Héroe"){
+                            echo "<li>" . $personaje["nombre"] . " - " . $personaje["universo"] . "</li>";
+                        }
+                    }
+                ?>
+            </ul>
+
+            <br>
+
+            <h2>Villanos</h2>
+            <ul>
+                <?php 
+                    foreach($personajes as $personaje){
+                        if($personaje["tipo"] == "Villano"){
+                            echo "<li>" . $personaje["nombre"] . " - " . $personaje["universo"] . "</li>";
+                        }
                     }
                 ?>
             </ul>
