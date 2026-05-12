@@ -138,7 +138,9 @@ form input[type="number"]:focus {
 
 /* Campos largos */
 label[for="poderes"],
-label[for="imagen"] {
+#poderes,
+label[for="imagen"],
+#imagen {
     grid-column: span 2;
 }
 
@@ -335,7 +337,9 @@ footer {
     }
 
     label[for="poderes"],
+    #poderes,
     label[for="imagen"],
+    #imagen,
     form label:has(input[type="checkbox"]) {
         grid-column: span 1;
     }

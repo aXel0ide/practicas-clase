@@ -159,6 +159,11 @@
                 "imagen" => $_POST["imagen"] ?? "",
                 "activo" => isset($_POST["activo"]) ? true : false
             ];
+            
+            if(empty($nuevoPersonaje["imagen"])){
+                $nuevoPersonaje["imagen"] = "./img/default.jpg"; // Imagen por defecto si no se proporciona una
+            }
+
             $personajes[] = $nuevoPersonaje;
             $indice = count($personajes) - 1; // Ajustamos el índice al nuevo personaje
             $personajeActual = $nuevoPersonaje; // Mostramos el nuevo personaje
