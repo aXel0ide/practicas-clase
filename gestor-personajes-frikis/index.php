@@ -223,6 +223,7 @@
 
         <div class="tarjeta <?php echo $personajeActual["activo"] ? "activo" : "inactivo"; ?>">
             <h2><?php echo $personajeActual["nombre"]; ?></h2>
+            <img src="<?php echo $personajeActual["imagen"]; ?>" alt="Imagen de <?php echo $personajeActual["nombre"]; ?>">
             <p><strong>Universo:</strong> <?php echo $personajeActual["universo"]; ?></p>
             <p><strong>Tipo:</strong> <?php echo $personajeActual["tipo"]; ?></p>
             <p><strong>Poderes:</strong> <?php echo $personajeActual["poder"]; ?></p>
@@ -335,7 +336,7 @@
                 Personajes del universo Bruguera:
                 <?php echo $resultadoBruguera["contador"] . ". Estos son: " . implode(", ", array_column($resultadoBruguera["personajes"], "nombre")); ?>
             </p>
-
+            <p>Personaje más antiguo: <?php echo personajeMasAntiguo($personajes)["nombre"]; ?></p>
         </div>
     </main>
     <footer>

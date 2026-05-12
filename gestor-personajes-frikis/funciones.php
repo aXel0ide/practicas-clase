@@ -53,4 +53,14 @@
         }
         return ["contador" => $contador, "personajes" => $resultados];
     }
+
+    function personajeMasAntiguo(array $personajes){
+        $masAntiguo = $personajes[0];
+        foreach($personajes as $personaje){
+            if($personaje["anio"] < $masAntiguo["anio"]){
+                $masAntiguo = $personaje;
+            }
+        }
+        return $masAntiguo;
+    }
 ?>
