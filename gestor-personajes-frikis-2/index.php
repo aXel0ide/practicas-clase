@@ -82,6 +82,20 @@
         public function getEtiquetaTipo(){
             return "Tipo: " . $this->tipo;
         }
+
+        public function frasePresentacion(){
+            return "Hola, soy " . $this->nombre . " mayor " . $this->tipo . " del universo " . $this->universo . ".";
+        }
+
+        public function comprobarUniverso(){
+            if($this->universo == "Marvel"){
+                return "Soy un personaje de Marvel.";
+            }
+            if($this->universo == "DC"){
+                return "Soy un personaje de DC.";
+            }
+            return "No soy ni de Marvel ni de DC.";
+        }
     }
 
     // Creamos un array con varios objetos de la clase Personaje.
@@ -298,7 +312,7 @@
         <div class="tarjeta <?php echo $personajeActual->activo ? "activo" : "inactivo"; ?>">
             <h2><?php echo $personajeActual->nombre; ?></h2>
             <img src="<?php echo $personajeActual->imagen; ?>" alt="Imagen de <?php echo $personajeActual->nombre; ?>">
-            <p><strong>Universo:</strong> <?php echo $personajeActual->universo; ?></p>
+            <p><strong>Universo:</strong> <?php echo $personajeActual->comprobarUniverso(); ?></p>
             <p><strong>Tipo:</strong> <?php echo $personajeActual->tipo; ?></p>
             <p><strong>Poderes:</strong> <?php echo $personajeActual->poder; ?></p>
             <p><strong>Año de creación:</strong> <?php echo $personajeActual->anio; ?></p>
@@ -311,6 +325,7 @@
                     echo "<p>¡Es un personaje clásico!</p>";
                 }
             ?>
+            <p><?php echo $personajeActual->frasePresentacion(); ?></p>
         </div>
         <div class="listado">
             <h2>Listado de Personajes</h2>
