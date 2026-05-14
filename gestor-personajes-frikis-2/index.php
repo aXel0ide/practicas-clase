@@ -226,10 +226,29 @@
         $indice = count($personajes) - 1;
     }
 
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $nuevoPersonaje = new Personaje(
+            $_POST['nombre'],
+            $_POST['universo'],
+            $_POST['tipo'],
+            $_POST['poderes'],
+            (int) $_POST['anio'],
+            $_POST['imagen'],
+            isset($_POST['activo'])
+        );
+
+        if($_POST["accion"] == "modificar"){
+            $personajes[$indice] = $nuevoPersonaje;
+        }
+
+        if($_POST["accion"] == "añadir"){
+            $personajes[] = $nuevoPersonaje; // Añade el nuevo personaje al final del array
+            $indice = count($personajes) - 1; // Actualiza el índice para mostrar el nuevo personaje
+        }
+    }
+
     // Guardamos en esta variable el personaje que corresponde al índice elegido
     $personajeActual = $personajes[$indice];
-
-    
 
 ?>
 <!DOCTYPE html>
@@ -245,8 +264,8 @@
         <h1>Gestor de Personajes Frikis</h1>
         <p>Bienvenido al gestor de personajes frikis.</p>
     </header>
-    <nav>
-        
+    <nav class="navegacion">
+        <?php funcionNavegacion($personajes, $indice); ?>
     </nav>
     <main>
         <form action="" method="post">
@@ -274,7 +293,6 @@
 
             <button type="submit" name="accion" value="modificar">Modificar</button>
             <button type="submit" name="accion" value="añadir">Añadir nuevo</button>
-            <button type="submit" name="accion" value="borrar">Borrar actual</button>
         </form>
 
         <div class="tarjeta <?php echo $personajeActual->activo ? "activo" : "inactivo"; ?>">
@@ -294,6 +312,27 @@
                 }
             ?>
         </div>
+        <div class="listado">
+            <h2>Listado de Personajes</h2>
+            <ul>
+                <?php 
+                    foreach($personajes as $personaje){
+                        echo "<li>" . $personaje->nombre . " - " . $personaje->universo . " - " . $personaje->getEtiquetaTipo() . "</li>";
+                    }
+                ?>
+            </ul>
+        </div>
+        <div class="resumen">
+            <h2>Resumen</h2>
+            <p>Total de personajes: <?php echo count($personajes); ?></p>
+            <p>Personajes activos: <?php echo contarActivos($personajes); ?></p>
+            <p>Personajes de Marvel: <?php echo contarPorUniverso($personajes, "Marvel"); ?></p>
+            <p>Personajes de DC: <?php echo contarPorUniverso($personajes, "DC"); ?></p>
+            <p>Personajes de Bruguera: <?php echo contarPorUniverso($personajes, "Bruguera"); ?></p>
+        </div>
     </main>
+    <footer>
+        <p>&copy; 2025 Gestor de Personajes Frikis. Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>
