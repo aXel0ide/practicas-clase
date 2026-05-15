@@ -1,0 +1,586 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --fondo: #090a12;
+    --tinta: #11131f;
+    --panel: rgba(20, 23, 37, 0.9);
+    --panel-solido: #151827;
+    --panel-claro: #202538;
+    --borde: rgba(255, 255, 255, 0.13);
+    --borde-fuerte: rgba(255, 255, 255, 0.24);
+    --texto: #f8fafc;
+    --texto-suave: #b9c0d4;
+    --amarillo: #ffd43b;
+    --rojo: #ff3b4f;
+    --azul: #38bdf8;
+    --verde: #2ee87e;
+    --morado: #a78bfa;
+    --sombra: 0 24px 70px rgba(0, 0, 0, 0.42);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+    color: var(--texto);
+    background:
+        radial-gradient(circle at 18% 8%, rgba(255, 212, 59, 0.18), transparent 28%),
+        radial-gradient(circle at 84% 18%, rgba(56, 189, 248, 0.18), transparent 28%),
+        linear-gradient(145deg, rgba(255, 59, 79, 0.12), transparent 42%),
+        var(--fondo);
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 34px 34px;
+    mask-image: linear-gradient(to bottom, black, transparent 82%);
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        repeating-radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.055) 0 1px, transparent 1px 7px);
+    opacity: 0.34;
+    mix-blend-mode: screen;
+}
+
+/* CABECERA */
+
+header {
+    position: relative;
+    padding: 44px 22px 38px;
+    text-align: center;
+    isolation: isolate;
+    overflow: hidden;
+    background:
+        linear-gradient(110deg, rgba(255, 212, 59, 0.2), transparent 33%),
+        linear-gradient(250deg, rgba(255, 59, 79, 0.22), transparent 35%),
+        #101321;
+    border-bottom: 4px solid var(--amarillo);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.36);
+}
+
+header::before,
+header::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: rgba(255, 255, 255, 0.06);
+    transform: skewX(-18deg);
+}
+
+header::before {
+    width: 34vw;
+    height: 170%;
+    left: -12vw;
+    top: -35%;
+    border-right: 5px solid rgba(255, 212, 59, 0.4);
+}
+
+header::after {
+    width: 26vw;
+    height: 150%;
+    right: -10vw;
+    top: -25%;
+    border-left: 5px solid rgba(255, 59, 79, 0.42);
+}
+
+header h1 {
+    max-width: 980px;
+    margin: 0 auto 10px;
+    color: var(--amarillo);
+    font-size: clamp(2rem, 5vw, 4.4rem);
+    line-height: 0.95;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    text-shadow:
+        3px 3px 0 #07101d,
+        7px 7px 0 rgba(255, 59, 79, 0.8);
+}
+
+header p {
+    color: var(--texto);
+    font-size: 1.02rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* NAVEGACION */
+
+.navegacion {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    min-height: 84px;
+    padding: 20px;
+    background: rgba(9, 10, 18, 0.82);
+    border-bottom: 1px solid var(--borde);
+    backdrop-filter: blur(14px);
+}
+
+.navegacion:empty::before,
+.navegacion:not(:has(a))::before {
+    content: "Primer personaje del archivo";
+    align-self: center;
+    color: var(--texto-suave);
+    font-size: 0.82rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.navegacion a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 144px;
+    min-height: 44px;
+    padding: 12px 22px;
+    color: #0a0d13;
+    background: var(--amarillo);
+    border: 2px solid #fff4a8;
+    border-radius: 6px;
+    box-shadow: 5px 5px 0 #0a0d13;
+    font-size: 0.88rem;
+    font-weight: 950;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: transform 0.18s, box-shadow 0.18s, filter 0.18s;
+}
+
+.navegacion a:hover {
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0 #0a0d13;
+    filter: saturate(1.15);
+}
+
+/* ESTRUCTURA PRINCIPAL */
+
+main {
+    flex: 1;
+    width: min(1180px, 92%);
+    margin: 42px auto 52px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);
+    grid-template-areas:
+        "form tarjeta"
+        "errores tarjeta";
+    gap: 24px;
+    align-items: start;
+}
+
+.formulario {
+    grid-area: form;
+}
+
+.errores {
+    grid-area: errores;
+}
+
+.tarjeta {
+    grid-area: tarjeta;
+}
+
+/* FORMULARIO */
+
+.formulario,
+.tarjeta,
+.errores {
+    position: relative;
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    box-shadow: var(--sombra);
+}
+
+.formulario {
+    overflow: hidden;
+    background:
+        linear-gradient(135deg, rgba(255, 212, 59, 0.11), transparent 36%),
+        var(--panel);
+}
+
+.formulario::before,
+.tarjeta::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.formulario h2 {
+    padding: 22px 26px 18px;
+    color: var(--amarillo);
+    background: rgba(5, 7, 14, 0.42);
+    border-bottom: 1px solid var(--borde);
+    font-size: 1.15rem;
+    line-height: 1.15;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 14px 18px;
+    padding: 26px;
+    align-items: center;
+}
+
+form label {
+    color: var(--texto-suave);
+    font-size: 0.78rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+}
+
+form input[type="text"],
+form input[type="number"] {
+    width: 100%;
+    min-height: 45px;
+    padding: 12px 14px;
+    border: 1px solid var(--borde);
+    border-radius: 7px;
+    outline: none;
+    background: rgba(5, 7, 14, 0.78);
+    color: var(--texto);
+    font-size: 0.98rem;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+form input[type="text"]:focus,
+form input[type="number"]:focus {
+    border-color: var(--azul);
+    background: rgba(9, 13, 24, 0.98);
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.16);
+}
+
+form label:has(input[type="checkbox"]) {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    min-height: 54px;
+    padding: 13px 16px;
+    color: var(--texto);
+    background:
+        linear-gradient(90deg, rgba(46, 232, 126, 0.16), transparent),
+        rgba(5, 7, 14, 0.72);
+    border: 1px solid rgba(46, 232, 126, 0.36);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    width: 42px;
+    height: 23px;
+    appearance: none;
+    position: relative;
+    flex: 0 0 auto;
+    border-radius: 999px;
+    border: 1px solid var(--borde-fuerte);
+    background: #303340;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    top: 2px;
+    left: 3px;
+    border-radius: 50%;
+    background: white;
+    transition: transform 0.2s;
+}
+
+input[type="checkbox"]:checked {
+    border-color: rgba(46, 232, 126, 0.8);
+    background: var(--verde);
+}
+
+input[type="checkbox"]:checked::before {
+    transform: translateX(18px);
+}
+
+button {
+    min-height: 46px;
+    border: 0;
+    border-radius: 7px;
+    padding: 13px 16px;
+    color: #06080d;
+    font-size: 0.86rem;
+    font-weight: 950;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 #05070e;
+    transition: transform 0.18s, box-shadow 0.18s, filter 0.18s;
+}
+
+button:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 #05070e;
+    filter: brightness(1.07) saturate(1.08);
+}
+
+button[name="accion"][value="modificar"] {
+    grid-column: 1 / -1;
+    background: var(--azul);
+}
+
+button[name="accion"][value="aÃ±adir"],
+button[name="accion"][value="añadir"],
+form button:nth-of-type(2) {
+    background: var(--verde);
+}
+
+button[name="accion"][value="borrar"] {
+    background: var(--rojo);
+    color: white;
+}
+
+/* ERRORES */
+
+.errores {
+    min-height: 0;
+    background: rgba(20, 23, 37, 0.74);
+    box-shadow: none;
+}
+
+.errores:empty,
+.errores:not(:has(ul)) {
+    display: none;
+}
+
+.errores ul {
+    list-style: none;
+    display: grid;
+    gap: 10px;
+    padding: 18px;
+}
+
+.errores li {
+    padding: 13px 15px;
+    color: #ffe1e4;
+    background: rgba(255, 59, 79, 0.16);
+    border: 1px solid rgba(255, 59, 79, 0.44);
+    border-left: 5px solid var(--rojo);
+    border-radius: 8px;
+    font-weight: 800;
+}
+
+/* TARJETA DEL PERSONAJE */
+
+.tarjeta {
+    position: sticky;
+    top: 24px;
+    overflow: hidden;
+    padding: 24px;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 34%),
+        var(--panel-solido);
+}
+
+.tarjeta::after {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    z-index: 0;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 9px;
+    pointer-events: none;
+}
+
+.tarjeta > * {
+    position: relative;
+    z-index: 1;
+}
+
+.tarjeta h2 {
+    margin-bottom: 18px;
+    color: var(--amarillo);
+    font-size: clamp(1.75rem, 3.6vw, 3.2rem);
+    line-height: 0.95;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    text-shadow: 3px 3px 0 #05070e;
+}
+
+.tarjeta img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    max-height: 560px;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    margin-bottom: 20px;
+    border: 4px solid var(--borde-fuerte);
+    border-radius: 10px;
+    background: #05070e;
+    box-shadow: 0 22px 46px rgba(0, 0, 0, 0.42);
+}
+
+.tarjeta p {
+    display: grid;
+    grid-template-columns: 118px 1fr;
+    gap: 12px;
+    padding: 13px 0;
+    color: var(--texto-suave);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+    line-height: 1.45;
+}
+
+.tarjeta p:last-child {
+    border-bottom: 0;
+}
+
+.tarjeta strong {
+    color: var(--texto);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.tarjeta.activo {
+    border-color: rgba(46, 232, 126, 0.5);
+    box-shadow:
+        var(--sombra),
+        0 0 44px rgba(46, 232, 126, 0.16);
+}
+
+.tarjeta.activo h2 {
+    color: var(--verde);
+}
+
+.tarjeta.activo img {
+    border-color: rgba(46, 232, 126, 0.72);
+}
+
+.tarjeta.inactivo {
+    border-color: rgba(255, 59, 79, 0.48);
+}
+
+.tarjeta.inactivo h2 {
+    color: var(--rojo);
+}
+
+.tarjeta.inactivo img {
+    border-color: rgba(255, 59, 79, 0.66);
+    filter: grayscale(0.35) contrast(0.92);
+}
+
+/* PIE */
+
+footer {
+    margin-top: auto;
+    padding: 20px;
+    color: #9aa3bd;
+    background: #05070e;
+    border-top: 1px solid var(--borde);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 920px) {
+    main {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "tarjeta"
+            "form"
+            "errores";
+    }
+
+    .tarjeta {
+        position: static;
+    }
+
+    .tarjeta img {
+        aspect-ratio: 16 / 10;
+        max-height: 430px;
+    }
+}
+
+@media (max-width: 680px) {
+    header {
+        padding: 34px 18px 30px;
+    }
+
+    header p {
+        font-size: 0.9rem;
+    }
+
+    .navegacion {
+        flex-direction: column;
+        align-items: stretch;
+        min-height: auto;
+    }
+
+    .navegacion a {
+        width: 100%;
+    }
+
+    main {
+        width: 94%;
+        margin: 26px auto 34px;
+        gap: 18px;
+    }
+
+    .formulario h2 {
+        padding: 19px 20px 15px;
+    }
+
+    form {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+
+    button[name="accion"][value="modificar"] {
+        grid-column: auto;
+    }
+
+    .tarjeta {
+        padding: 20px;
+    }
+
+    .tarjeta p {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+}
+
+@media (max-width: 440px) {
+    .tarjeta img {
+        aspect-ratio: 4 / 5;
+    }
+
+    button {
+        width: 100%;
+    }
+}

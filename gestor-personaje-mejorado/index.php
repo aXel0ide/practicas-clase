@@ -1,6 +1,7 @@
 <?php
     // Iniciamos la sesión para almacenar los personajes
     session_start();
+    include_once("./funciones.php");
 
     // Array con personajes iniciales. Es una "base de datos" inicial por si no hay datos en el json
     $personajesIniciales = [
@@ -124,15 +125,58 @@
             // Leemos el contenido del JSON y lo decodificamos para guardarlo en la sesión
             $contenido = file_get_contents($ficheroPersonajes);
             // Guardamos los personajes del JSON en la sesión como un array
-            $_SESSION["personajes"] = json_decode($contenido, true);
+            $personajesJson = json_decode($contenido, true);
+
+            if(is_array($personajesJson)){
+                // Si el JSON es un array válido, lo guardamos en la sesión
+                $_SESSION["personajes"] = $personajesJson;
+            }else{
+                // Si el JSON no es un array válido, usamos los personajes iniciales
+                $_SESSION["personajes"] = $personajesIniciales;
+            }
         }else{
-            // Si no existe el JSON, usamos los personajes iniciales y los guardamos en la sesión
+            // Si no existe el JSON o está vacío, usamos los personajes iniciales y los guardamos en la sesión
             $_SESSION["personajes"] = $personajesIniciales;
         }
     }
 
     // Cargamos los personajes desde la sesión para usarlos en la aplicación de forma más códmoda
     $personajes = $_SESSION["personajes"];
+
+    // Control de errores. Evitamos que el indice sea negativo o mayor que el número de personajes disponibles
+    // Inicializamos el índice a 0 por defecto
+    $indice = 0;
+    
+    if(isset($_GET["indice"])){
+        $indice = $_GET["indice"];
+    }
+
+    if($indice < 0){
+        $indice = 0;
+    }
+
+    if(count($personajes) > 0 && $indice >= count($personajes)){
+        $indice = count($personajes) - 1;
+    }
+
+    $personajeActual = $personajes[$indice];
+
+    // Llamamos a la función de errores para validar los datos del formulario y guardamos los errores en una variable
+    $errores = errores();
+
+    if($_SERVER["REQUEST_METHOD"] == "POST" && empty($errores)){
+        [$personajes, $indice, $personajeActual] = accionFormulario($personajes, $indice, $personajeActual);
+
+        // Actualizamos la sesión con los personajes modificados o añadidos
+        $_SESSION["personajes"] = $personajes;
+
+        // Se guarda el array de personajes en el archivo JSON
+        // Convierte el array de PHP a texto JSON
+        $textoJson = json_encode($personajes, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        // Guarda el texto JSON en el archivo, sobrescribiendo su contenido
+        file_put_contents($ficheroPersonajes, $textoJson);
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -148,11 +192,65 @@
         <h1>Gestor de Personajes Mejorado</h1>
         <p>Bienvenido al gestor de personajes mejorado</p>
     </header>
-    <nav>
-
+    <nav class="navegacion">
+        <?php funcionNavegacion($personajes, $indice); ?>
     </nav>
     <main>
+        <div class="formulario">
+            <h2>Datos del Personaje</h2>
+            <form method="post" action="">
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" id="nombre" value="<?php echo $personajeActual["nombre"]; ?>">
 
+                <label for="universo">Universo</label>
+                <input type="text" name="universo" id="universo" value="<?php echo $personajeActual["universo"]; ?>">
+
+                <label for="tipo">Tipo</label>
+                <input type="text" name="tipo" id="tipo" value="<?php echo $personajeActual["tipo"] ?>">
+
+                <label for="poderes">Poderes principales</label>
+                <input type="text" name="poderes" id="poderes" value="<?php echo $personajeActual["poder"] ?>">
+
+                <label for="anio">Año de creación</label>
+                <input type="number" name="anio" id="anio" value="<?php echo $personajeActual["anio"] ?>">
+
+                <label for="imagen">Imagen</label>
+                <input type="text" name="imagen" id="imagen" value="<?php echo $personajeActual["imagen"] ?>">
+
+                <label>
+                    <input type="checkbox" name="activo" id="activo" <?php echo $personajeActual["activo"] ? "checked" : ""; ?>> Activo
+                </label>
+
+                <button type="submit" name="accion" value="modificar">Modificar</button>
+                <button type="submit" name="accion" value="añadir">Añadir nuevo</button>
+                <button type="submit" name="accion" value="borrar">Borrar actual</button>
+            </form>
+        </div>
+        <div class="errores">
+            <?php 
+                if(!empty($errores)){
+                    echo "<ul>";
+                    foreach($errores as $error){
+                        echo "<li>" . $error . "</li>";
+                    }
+                    echo "</ul>";
+                }
+            ?>
+        </div>
+        <div class="tarjeta <?php echo $personajeActual["activo"] ? "activo" : "inactivo"; ?>">
+            <h2><?php echo $personajeActual["nombre"]; ?></h2>
+            <img src="<?php echo $personajeActual["imagen"]; ?>" alt="Imagen de <?php echo $personajeActual["nombre"]; ?>">
+            <p><strong>Universo:</strong> <?php echo $personajeActual["universo"]; ?></p>
+            <p><strong>Tipo:</strong> <?php echo $personajeActual["tipo"]; ?></p>
+            <p><strong>Poderes:</strong> <?php echo $personajeActual["poder"]; ?></p>
+            <p><strong>Año de creación:</strong> <?php echo $personajeActual["anio"]; ?></p>
+            <p><strong>Activo:</strong> <?php echo $personajeActual["activo"] ? "Sí" : "No"; ?></p>
+            <?php 
+                if($personajeActual["activo"] == true && $personajeActual["tipo"] == "Héroe"){
+                    echo "<p>¡Es un héroe activo!</p>";
+                }
+            ?>
+        </div>
     </main>
     <footer>
         <p>&copy; 2026 Gestor de Personajes Mejorado. Todos los derechos reservados.</p>
