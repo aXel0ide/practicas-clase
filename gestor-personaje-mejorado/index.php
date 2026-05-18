@@ -237,6 +237,7 @@
                 }
             ?>
         </div>
+
         <div class="tarjeta <?php echo $personajeActual["activo"] ? "activo" : "inactivo"; ?>">
             <h2><?php echo $personajeActual["nombre"]; ?></h2>
             <img src="<?php echo $personajeActual["imagen"]; ?>" alt="Imagen de <?php echo $personajeActual["nombre"]; ?>">
@@ -251,6 +252,19 @@
                 }
             ?>
         </div>
+
+        <div class="lista-personajes">
+            <h2>Lista de Personajes</h2>
+            <ul>
+                <?php 
+                    foreach($personajes as $index => $personaje){
+                        echo "<li>" . $personaje["nombre"] . " - " . $personaje["universo"] . " - " . $personaje["tipo"] . "</li>";
+                    }
+                ?>
+            </ul>
+
+        </div>
+        
     </main>
     <footer>
         <p>&copy; 2026 Gestor de Personajes Mejorado. Todos los derechos reservados.</p>

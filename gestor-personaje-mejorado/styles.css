@@ -184,7 +184,8 @@ main {
     grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);
     grid-template-areas:
         "form tarjeta"
-        "errores tarjeta";
+        "errores tarjeta"
+        "lista tarjeta";
     gap: 24px;
     align-items: start;
 }
@@ -199,6 +200,10 @@ main {
 
 .tarjeta {
     grid-area: tarjeta;
+}
+
+.lista-personajes {
+    grid-area: lista;
 }
 
 /* FORMULARIO */
@@ -394,11 +399,57 @@ button[name="accion"][value="borrar"] {
     font-weight: 800;
 }
 
+/* LISTA DE PERSONAJES */
+
+.lista-personajes {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    background:
+        linear-gradient(135deg, rgba(255, 212, 59, 0.09), transparent 36%),
+        var(--panel);
+    box-shadow: var(--sombra);
+}
+
+.lista-personajes h2 {
+    padding: 18px 22px 15px;
+    color: var(--amarillo);
+    background: rgba(5, 7, 14, 0.42);
+    border-bottom: 1px solid var(--borde);
+    font-size: 1rem;
+    line-height: 1.15;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.lista-personajes ul {
+    list-style: none;
+    display: grid;
+    gap: 10px;
+    padding: 18px;
+}
+
+.lista-personajes li {
+    padding: 13px 15px;
+    color: var(--texto-suave);
+    background: rgba(5, 7, 14, 0.62);
+    border: 1px solid var(--borde);
+    border-left: 5px solid var(--azul);
+    border-radius: 8px;
+    line-height: 1.4;
+    font-weight: 800;
+}
+
+.lista-personajes li:hover {
+    color: var(--texto);
+    border-left-color: var(--amarillo);
+    background: rgba(20, 23, 37, 0.92);
+}
+
 /* TARJETA DEL PERSONAJE */
 
 .tarjeta {
-    position: sticky;
-    top: 24px;
     overflow: hidden;
     padding: 24px;
     background:
@@ -514,7 +565,8 @@ footer {
         grid-template-areas:
             "tarjeta"
             "form"
-            "errores";
+            "errores"
+            "lista";
     }
 
     .tarjeta {
