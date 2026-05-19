@@ -39,7 +39,7 @@
         return $errores;
     }
 
-    function accionFormulario(array $personajes, int $indice, array $personajeActual){
+    function accionFormulario(array $personajes, int $indice, array $personajeActual, array $personajesIniciales, string $ficheroPersonajes){
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             $accion = $_POST["accion"];
 
@@ -77,7 +77,23 @@
                 $indice = 0; // Volvemos al primer personaje
                 $personajeActual = $personajes[$indice]; // Mostramos el primer personaje
             }
+
+            if($accion == "reiniciar"){
+                $personajes = reiniciarPersonajes($personajesIniciales, $ficheroPersonajes);
+                $indice = 0; // Volvemos al primer personaje
+                $personajeActual = $personajes[$indice]; // Mostramos el primer personaje
+            }
         }
         return [$personajes, $indice, $personajeActual];
+    }
+
+    function reiniciarPersonajes(array $personajesIniciales, string $ficheroPersonajes){
+        $_SESSION["personajes"] = $personajesIniciales;
+
+        $textoJson = json_encode($personajesIniciales, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        // Guarda el texto JSON en el archivo, sobrescribiendo su contenido
+        file_put_contents($ficheroPersonajes, $textoJson);
+
+        return $personajesIniciales;
     }
 ?>

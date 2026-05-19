@@ -173,7 +173,7 @@
     $errores = errores();
 
     if($_SERVER["REQUEST_METHOD"] == "POST" && empty($errores)){
-        [$personajes, $indice, $personajeActual] = accionFormulario($personajes, $indice, $personajeActual);
+        [$personajes, $indice, $personajeActual] = accionFormulario($personajes, $indice, $personajeActual, $personajesIniciales, $ficheroPersonajes);
 
         // Actualizamos la sesión con los personajes modificados o añadidos
         $_SESSION["personajes"] = $personajes;
@@ -241,6 +241,7 @@
                 <button type="submit" name="accion" value="modificar">Modificar</button>
                 <button type="submit" name="accion" value="añadir">Añadir nuevo</button>
                 <button type="submit" name="accion" value="borrar">Borrar actual</button>
+                <button type="submit" name="accion" value="reiniciar">Reiniciar personajes</button>
 
                 <div class="ultima-actualizacion">
                     <p><strong>Fecha de última actualización:</strong> <?php echo isset($fechaActualizacion) ? $fechaActualizacion : "No se han guardado cambios aún"; ?></p>

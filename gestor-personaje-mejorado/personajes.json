@@ -4,7 +4,7 @@
         "universo": "DC",
         "tipo": "Héroe",
         "poder": "Inteligencia, habilidades de combate, tecnología avanzada",
-        "anio": "1939",
+        "anio": 1939,
         "imagen": ".\/img\/batman.jpg",
         "activo": true
     },
@@ -22,7 +22,7 @@
         "universo": "Marvel",
         "tipo": "Villano",
         "poder": "Magia, manipulación, astucia",
-        "anio": "1949",
+        "anio": 1949,
         "imagen": ".\/img\/loki.jpg",
         "activo": false
     },
@@ -106,14 +106,5 @@
         "anio": 1963,
         "imagen": ".\/img\/ironman.jpg",
         "activo": false
-    },
-    {
-        "nombre": "Batman",
-        "universo": "DC",
-        "tipo": "Héroe",
-        "poder": "Inteligencia, habilidades de combate, tecnología avanzada",
-        "anio": "1939",
-        "imagen": ".\/img\/batman.jpg",
-        "activo": true
     }
 ]

@@ -369,6 +369,14 @@ button[name="accion"][value="borrar"] {
     color: white;
 }
 
+button[name="accion"][value="reiniciar"] {
+    grid-column: 1 / -1;
+    background:
+        linear-gradient(135deg, var(--rojo), var(--morado));
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
 /* ULTIMA ACTUALIZACION */
 
 .ultima-actualizacion {
