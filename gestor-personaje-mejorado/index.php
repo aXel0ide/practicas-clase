@@ -118,6 +118,14 @@
     // Guarda la ruita del archivo json donde se almacenan los personajes.
     $ficheroPersonajes = "./personajes.json";
 
+    date_default_timezone_set("Europe/Madrid");
+
+    if(file_exists($ficheroPersonajes)){
+        $fechaActualizacion = date("d/m/Y H:i:s", filemtime($ficheroPersonajes));
+    }else{
+        $fechaActualizacion = "No se han guardado cambios aún";
+    }
+
     // Si no hay personajes en la sesión, los cargamos desde el JSON o usamos los iniciales
     if(!isset($_SESSION["personajes"])){
         // Si el JSON existe, lo cargamos y lo guardamos en la sesión
@@ -176,6 +184,13 @@
         // Guarda el texto JSON en el archivo, sobrescribiendo su contenido
         file_put_contents($ficheroPersonajes, $textoJson);
 
+        // Redirigimos a la misma página para evitar el reenvío del formulario al actualizar la página y para mostrar el mensaje de guardado
+        header("Location: index.php?indice=" . $indice . "&guardado=1");
+        exit;
+    }
+
+    // Si se ha guardado correctamente, mostramos un mensaje de confirmación
+    if(isset($_GET["guardado"])){
         $mensajeGuardado = "Cambios guardados correctamente.";
     }
 
@@ -226,6 +241,10 @@
                 <button type="submit" name="accion" value="modificar">Modificar</button>
                 <button type="submit" name="accion" value="añadir">Añadir nuevo</button>
                 <button type="submit" name="accion" value="borrar">Borrar actual</button>
+
+                <div class="ultima-actualizacion">
+                    <p><strong>Fecha de última actualización:</strong> <?php echo isset($fechaActualizacion) ? $fechaActualizacion : "No se han guardado cambios aún"; ?></p>
+                </div>
             </form>
         </div>
         <?php 
