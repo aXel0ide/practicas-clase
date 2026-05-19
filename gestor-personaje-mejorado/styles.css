@@ -369,6 +369,23 @@ button[name="accion"][value="borrar"] {
     color: white;
 }
 
+/* MENSAJE DE GUARDADO */
+
+.mensaje {
+    padding: 16px 20px;
+    color: #d9ffe8;
+    background: rgba(46, 232, 126, 0.14);
+    border: 1px solid rgba(46, 232, 126, 0.45);
+    border-left: 5px solid var(--verde);
+    border-radius: 10px;
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.24);
+    font-weight: 800;
+}
+
+.mensaje p {
+    margin: 0;
+}
+
 /* ERRORES */
 
 .errores {

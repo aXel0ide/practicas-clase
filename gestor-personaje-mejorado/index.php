@@ -175,6 +175,8 @@
         $textoJson = json_encode($personajes, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         // Guarda el texto JSON en el archivo, sobrescribiendo su contenido
         file_put_contents($ficheroPersonajes, $textoJson);
+
+        $mensajeGuardado = "Cambios guardados correctamente.";
     }
 
 ?>
@@ -226,6 +228,14 @@
                 <button type="submit" name="accion" value="borrar">Borrar actual</button>
             </form>
         </div>
+        <?php 
+            if(isset($mensajeGuardado)){
+                echo "<div class='mensaje'>
+                        <p>" . $mensajeGuardado . "</p>
+                    </div>";
+            }
+        ?>
+
         <div class="errores">
             <?php 
                 if(!empty($errores)){
