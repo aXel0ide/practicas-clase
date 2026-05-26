@@ -13,6 +13,7 @@
             "duracion" => 60,
             "imagen" => "./img/rusowsky.jpg",
             "audio" => "./media/rusowsky.mp3",
+            "video" => "https://www.youtube.com/embed/E5WJ5p3Fu_s",
             "descripcion" => "Concierto principal del festival con luces y grandes efectos visuales."
         ],
         [
@@ -22,9 +23,10 @@
             "dia" => "Viernes",
             "escenario" => "El Valle",
             "franja" => "22:00",
-            "duracon" => 60,
+            "duracion" => 60,
             "imagen" => "./img/abhir.jpg",
-            "audio" => "./media/abhir.mp3",
+            "audio" => "",
+            "video" => "",
             "descripcion" => "El artista canario vuelve a visitarnos para animar y romperla con su nuevo disco ULTRASWAN."
         ]
     ];
@@ -207,7 +209,33 @@
 
     </nav>
     <main>
+        <section class="agenda" id="agenda">
+            <?php foreach($actuaciones as $a): ?>
+            <article class="tarjeta" data-estilo="<?php echo strtolower($a["estilo"]); ?>">
+                <h2><?php echo $a["artista"] ?></h2>
+                <p class="meta"><?php echo $a["dia"] .  " - " . $a["escenario"] . " - " . $a["franja"] ?></p>
 
+                <img src="<?php echo $a["imagen"] ?>" alt="Imagen de <?php echo $a["artista"] ?>">
+                <p><strong>Estilo: </strong><?php echo $a["estilo"] ?>.</p>
+                <p><strong>Duración: </strong><?php echo $a["duracion"] ?> minutos.</p>
+                <p><?php echo $a["descripcion"] ?></p>
+
+                <?php if($a["audio"] != ""): ?>
+                    <audio controls src="<?php echo $a["audio"]; ?>"></audio>
+                <?php endif; ?>
+
+                <?php if (!empty($a["video"])): ?>
+                <div class="video">
+                    <iframe
+                        src="<?php echo $a["video"]; ?>"
+                        title="Vídeo de <?php echo $a["artista"]; ?>"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <?php endif; ?>
+            </article>
+            <?php endforeach; ?>
+        </section>
     </main>
     <footer>
 
