@@ -204,9 +204,11 @@
 <body>
     <header>
         <h1>Riverland Asturias</h1>
+        <p>Asturias · 21-23 Agosto 2026</p>
+        <p>Donde el norte suena a urbano, pop alternativo y noches largas.</p>
     </header>
     <nav>
-
+        
     </nav>
     <main>
         <section class="agenda" id="agenda">
