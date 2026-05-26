@@ -1,6 +1,8 @@
 <?php
     session_start();
-    $actuaciones = [
+    include_once ("./funciones.php");
+
+    $actuacionesIniciales = [
         [
             "id" => "A001",
             "artista" => "Rusowsky",
@@ -27,7 +29,7 @@
         ]
     ];
 
-    $horario = [
+    $horarioInicial = [
         "Viernes" => [
             "El Valle" => [
                 "18:00" => null,
@@ -183,6 +185,10 @@
     $ficheroActuaciones = "./actuaciones.json";
     $ficheroHorario = "./horario.json";
 
+
+    // Metemos las actuaciones de la sesión en una variable para facilitar el uso
+    $actuaciones = cargarDatosSesion("actuaciones", $ficheroActuaciones, $actuacionesIniciales);
+    $horarios = cargarDatosSesion("horarios", $ficheroHorario, $horarioInicial);
     
 ?>
 <!DOCTYPE html>
@@ -195,7 +201,7 @@
 </head>
 <body>
     <header>
-
+        <h1>Riverland Asturias</h1>
     </header>
     <nav>
 
