@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<peliculas>
+    <pelicula>
+        <titulo>Batman</titulo>
+        <universo>DC</universo>
+        <anio>2022</anio>
+        <director>Matt Reeves</director>
+        <formato>Acción</formato>
+        <imagen>https://static.wikia.nocookie.net/marvel_dc/images/4/48/The_Batman_Movie_001.jpg/revision/latest?cb=20211228154331</imagen>
+        <sinopsis>Nueva visión oscura del personaje con tono detectivesco.</sinopsis>
+    </pelicula>
+    <pelicula>
+        <titulo>Spider-Man: No Way Home</titulo>
+        <universo>Marvel</universo>
+        <anio>2021</anio>
+        <director>Jon Watts</director>
+        <formato>Superhéroes</formato>
+        <imagen>https://upload.wikimedia.org/wikipedia/en/0/00/Spider-Man_No_Way_Home_poster.jpg</imagen>
+        <sinopsis>Peter Parker afronta las consecuencias de que se conozca su identidad.</sinopsis>
+    </pelicula>
+    <pelicula>
+        <titulo>Superlópez</titulo>
+        <universo>Español</universo>
+        <anio>2018</anio>
+        <director>Javier Ruiz Caldera</director>
+        <formato>Comedia</formato>
+        <imagen>https://static.wikia.nocookie.net/ficcion-sin-limites/images/8/84/Poster-superlopez.jpg/revision/latest?cb=20260524232251&amp;path-prefix=ess</imagen>
+        <sinopsis>Adaptación cinematográfica del famoso personaje español.</sinopsis>
+    </pelicula>
+    <pelicula>
+        <titulo>Mortadelo y Filemón contra Jimmy el Cachondo</titulo>
+        <universo>Español</universo>
+        <anio>2014</anio>
+        <director>Javier Fesser</director>
+        <formato>Animación</formato>
+        <imagen>https://static.wikia.nocookie.net/mortadelo/images/2/25/Mortadelo_y_Filem%C3%B3n_contra_Jimmy_el_cachondo.jpg/revision/latest?cb=20150824135309&amp;path-prefix=es</imagen>
+        <sinopsis>Aventura disparatada basada en los personajes clásicos de Ibáñez.</sinopsis>
+    </pelicula>
+</peliculas>
