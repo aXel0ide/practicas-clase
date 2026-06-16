@@ -1,5 +1,18 @@
 <?php
-    $xml = simplexml_load_file("peliculas.xml");
+    // Guarda el nombre del archivo en una variable.
+    $archivo = "peliculas.xml";
+    // Inicializa $xml como false.
+    $xml = false;
+
+    // Comprueba si el archivo existe y si no está vacío.
+    if(file_exists($archivo) && filesize($archivo) > 0){
+        // Si hay errores leyendo el XML no los muestra.
+        libxml_use_internal_errors(true);
+        // Intenta cargar el XML, si está bien escrito tendrá el contenido. Si está mal escrito tiene false.
+        $xml = simplexml_load_file("peliculas.xml");
+        // Limpia los errores internos que haya guardado PHP al intentar leer el XML.
+        libxml_clear_errors();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -16,8 +29,9 @@
         <p>Listado dinámico cargado desde un archivo XML mediante PHP.</p>
     </header>
     <main class="contenedor">
-        <?php 
-            foreach($xml->pelicula as $pelicula){
+        <?php
+            if($xml !== false){
+                foreach($xml->pelicula as $pelicula){
                 echo "
                     <article class='tarjeta'>
                         <img src='" . $pelicula->imagen . "' alt='" . $pelicula->titulo . "' >
@@ -31,6 +45,9 @@
                         <p>" . $pelicula->sinopsis . "</p>
                     </article>
                 ";
+                }
+            }else{
+                echo "<h2>El archivo peliculas.xml está vacío.</h2>";
             }
         ?>
     </main>
