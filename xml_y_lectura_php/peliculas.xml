@@ -55,4 +55,37 @@
         <imagen>https://static.wikia.nocookie.net/shinchan/images/e/ee/1991.jpg/revision/latest?cb=20240814170925&amp;path-prefix=es</imagen>
         <sinopsis>Un misterioso "Parque del Siglo XX" hipnotiza a los adultos de Kasukabe con la "esencia del pasado", convirtiéndolos en niños nostálgicos que abandonan sus vidas. Shin Chan y sus amigos deberán embarcarse en una frenética aventura para rescatar a sus padres y salvar el futuro del mundo.</sinopsis>
     </pelicula>
+    <pelicula>
+        <titulo>12 Hombres sin Piedad</titulo>
+        <protagonista>12 Hombres XD</protagonista>
+        <universo>Estado Unidense</universo>
+        <anio>1957</anio>
+        <director>Sidney Lumet</director>
+        <formato>Suspenso/Crimen</formato>
+        <duracion>100</duracion>
+        <imagen>https://static.wikia.nocookie.net/cine/images/b/b9/12angrymen.jpg/revision/latest?cb=20240920112036</imagen>
+        <sinopsis>Doce hombres sin piedad narra la deliberación de un jurado popular que debe decidir por unanimidad si un joven de 18 años es culpable de asesinar a su padre.</sinopsis>
+    </pelicula>
+    <pelicula>
+        <titulo>Spider-Man: Cruzando el Multiverso</titulo>
+        <protagonista>Miles Morales</protagonista>
+        <universo>Marvel</universo>
+        <anio>2023</anio>
+        <director>Joaquim Dos Santos, Kemp Powers y Justin K. Thompson</director>
+        <formato>Acción/Ciencia Ficción</formato>
+        <duracion>130</duracion>
+        <imagen>https://static.wikia.nocookie.net/spiderman/images/a/a8/Spider-Man_Across_the_Spider-Verse_Poster_4.png/revision/latest?cb=20230521124145&amp;path-prefix=es</imagen>
+        <sinopsis>Miles Morales se embarca en una épica aventura a través de las dimensiones tras reencontrarse con Gwen Stacy. Debe unir fuerzas con la Sociedad Araña para detener a una nueva y peligrosa amenaza (La Mancha), pero choca con ellos sobre cómo manejar el multiverso, obligándolo a redefinir lo que significa ser un héroe.</sinopsis>
+    </pelicula>
+    <pelicula>
+        <titulo>Superman</titulo>
+        <protagonista>Superman</protagonista>
+        <universo>DC</universo>
+        <anio>2025</anio>
+        <director>James Gunn</director>
+        <formato>Acción/Ciencia Ficción</formato>
+        <duracion>129</duracion>
+        <imagen>https://static.wikia.nocookie.net/superman/images/8/8c/Segundo_p%C3%B3ster_de_Superman_%282025%29.jpeg/revision/latest/scale-to-width-down/1000?cb=20250514211212&amp;path-prefix=es</imagen>
+        <sinopsis>En un mundo cínico que ha perdido la fe en la bondad, Superman lucha por reconciliar su herencia kryptoniana con su educación humana en Smallville. Tras intervenir en un conflicto internacional orquestado por el despiadado empresario Lex Luthor, el héroe debe enfrentarse a consecuencias imprevistas.</sinopsis>
+    </pelicula>
 </peliculas>
