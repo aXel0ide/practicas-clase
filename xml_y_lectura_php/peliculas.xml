@@ -2,38 +2,57 @@
 <peliculas>
     <pelicula>
         <titulo>Batman</titulo>
+        <protagonista>Batman</protagonista>
         <universo>DC</universo>
         <anio>2022</anio>
         <director>Matt Reeves</director>
         <formato>Acción</formato>
+        <duracion>230</duracion>
         <imagen>https://static.wikia.nocookie.net/marvel_dc/images/4/48/The_Batman_Movie_001.jpg/revision/latest?cb=20211228154331</imagen>
         <sinopsis>Nueva visión oscura del personaje con tono detectivesco.</sinopsis>
     </pelicula>
     <pelicula>
         <titulo>Spider-Man: No Way Home</titulo>
+        <protagonista>Spider-Man</protagonista>
         <universo>Marvel</universo>
         <anio>2021</anio>
         <director>Jon Watts</director>
         <formato>Superhéroes</formato>
+        <duracion>90</duracion>
         <imagen>https://upload.wikimedia.org/wikipedia/en/0/00/Spider-Man_No_Way_Home_poster.jpg</imagen>
         <sinopsis>Peter Parker afronta las consecuencias de que se conozca su identidad.</sinopsis>
     </pelicula>
     <pelicula>
         <titulo>Superlópez</titulo>
+        <protagonista>Superlópez</protagonista>
         <universo>Español</universo>
         <anio>2018</anio>
         <director>Javier Ruiz Caldera</director>
         <formato>Comedia</formato>
+        <duracion>95</duracion>
         <imagen>https://static.wikia.nocookie.net/ficcion-sin-limites/images/8/84/Poster-superlopez.jpg/revision/latest?cb=20260524232251&amp;path-prefix=ess</imagen>
         <sinopsis>Adaptación cinematográfica del famoso personaje español.</sinopsis>
     </pelicula>
     <pelicula>
         <titulo>Mortadelo y Filemón contra Jimmy el Cachondo</titulo>
+        <protagonista>Mortadelo y Filemón</protagonista>
         <universo>Español</universo>
         <anio>2014</anio>
         <director>Javier Fesser</director>
         <formato>Animación</formato>
+        <duracion>120</duracion>
         <imagen>https://static.wikia.nocookie.net/mortadelo/images/2/25/Mortadelo_y_Filem%C3%B3n_contra_Jimmy_el_cachondo.jpg/revision/latest?cb=20150824135309&amp;path-prefix=es</imagen>
         <sinopsis>Aventura disparatada basada en los personajes clásicos de Ibáñez.</sinopsis>
+    </pelicula>
+    <pelicula>
+        <titulo>Shin-chan: Los adultos contraatacan</titulo>
+        <protagonista>Shin-chan</protagonista>
+        <universo>Japonés</universo>
+        <anio>2001</anio>
+        <director>Keiichi Hara</director>
+        <formato>Comedia/Animación</formato>
+        <duracion>100</duracion>
+        <imagen>https://static.wikia.nocookie.net/shinchan/images/e/ee/1991.jpg/revision/latest?cb=20240814170925&amp;path-prefix=es</imagen>
+        <sinopsis>Un misterioso "Parque del Siglo XX" hipnotiza a los adultos de Kasukabe con la "esencia del pasado", convirtiéndolos en niños nostálgicos que abandonan sus vidas. Shin Chan y sus amigos deberán embarcarse en una frenética aventura para rescatar a sus padres y salvar el futuro del mundo.</sinopsis>
     </pelicula>
 </peliculas>

@@ -22,10 +22,12 @@
                     <article class='tarjeta'>
                         <img src='" . $pelicula->imagen . "' alt='" . $pelicula->titulo . "' >
                         <h2>" . $pelicula->titulo . "</h2>
+                        <p><strong>Protagonista: </strong>" . $pelicula->protagonista. "</p>
                         <p><strong>Universo: </strong>" . $pelicula->universo . "</p>
                         <p><strong>Año: </strong>" . $pelicula->anio . "</p>
                         <p><strong>Director: </strong>" . $pelicula->director . "</p>
                         <p><strong>Formato: </strong>" . $pelicula->formato . "</p>
+                        <p><strong>Duración: </strong>" . $pelicula->duracion . " minutos.</p>
                         <p>" . $pelicula->sinopsis . "</p>
                     </article>
                 ";
