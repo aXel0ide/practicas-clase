@@ -32,27 +32,29 @@
         <?php
             if($xml !== false){
                 foreach($xml->pelicula as $pelicula){
-                echo "
-                    <article class='tarjeta'>
-                        <img src='" . $pelicula->imagen . "' alt='" . $pelicula->titulo . "' >
-                        <h2>" . $pelicula->titulo . "</h2>
-                        <p><strong>Protagonista: </strong>" . $pelicula->protagonista. "</p>
-                        <p><strong>Universo: </strong>" . $pelicula->universo . "</p>
-                        <p><strong>Año: </strong>" . $pelicula->anio . "</p>
-                        <p><strong>Director: </strong>" . $pelicula->director . "</p>
-                        <p><strong>Formato: </strong>" . $pelicula->formato . "</p>
-                        <p><strong>Duración: </strong>" . $pelicula->duracion . " minutos.</p>
-                        <p>" . $pelicula->sinopsis . "</p>
-                        <br>
-                        <p><strong>Puntuación: </strong>" . $pelicula->puntuacion . "</p>
-                    </article>
-                ";
+                    if($pelicula->universo == "Español"){
+                        echo "
+                            <article class='tarjeta'>
+                                <img src='" . $pelicula->imagen . "' alt='" . $pelicula->titulo . "' >
+                                <h2>" . $pelicula->titulo . "</h2>
+                                <p><strong>Protagonista: </strong>" . $pelicula->protagonista. "</p>
+                                <p><strong>Universo: </strong>" . $pelicula->universo . "</p>
+                                <p><strong>Año: </strong>" . $pelicula->anio . "</p>
+                                <p><strong>Director: </strong>" . $pelicula->director . "</p>
+                                <p><strong>Formato: </strong>" . $pelicula->formato . "</p>
+                                <p><strong>Duración: </strong>" . $pelicula->duracion . " minutos.</p>
+                                <p>" . $pelicula->sinopsis . "</p>
+                                <br>
+                                <p><strong>Puntuación: </strong>" . $pelicula->puntuacion . "</p>
+                            </article>
+                        ";
+                    }
                 }
             }else{
                 echo "<h2>El archivo peliculas.xml está vacío.</h2>";
             }
         ?>
-        <p>Para ver solo las películas españolas pulsa <strong><a href="./español.php">AQUI</a>.</strong></p>
+        <p>Para volver al principio pusla <strong><a href="./index.php">AQUI</a>.</strong></p>
     </main>
 </body>
 </html>
