@@ -13,9 +13,9 @@
     </header>
     <main class="contenedor-inicio">
         <a class="boton" href="./api_peliculas.php">Ver API completa</a>
-        <a class="boton" href=""></a>
-        <a class="boton" href=""></a>
-        <a class="boton" href=""></a>
+        <a class="boton" href="./api_peliculas.php?universo=Marvel">API filtrada por Marvel</a>
+        <a class="boton" href="./api_peliculas.php?min_anio=2020">API desde 2020</a>
+        <a class="boton" href="./catalogo.php">Ver catálogo visual</a>
     </main>
 </body>
 </html>
