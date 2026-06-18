@@ -1,0 +1,221 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #222831;
+    background: #f3f5f7;
+}
+
+header {
+    padding: 34px 20px;
+    text-align: center;
+    color: #ffffff;
+    background: #263544;
+}
+
+header h1 {
+    margin: 0 0 10px;
+    font-size: 2rem;
+}
+
+header p {
+    max-width: 720px;
+    margin: 0 auto;
+    color: #d6dee6;
+    line-height: 1.5;
+}
+
+nav {
+    margin-top: 22px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+nav a,
+.boton,
+button {
+    display: inline-block;
+    border: 0;
+    border-radius: 6px;
+    padding: 11px 16px;
+    font: inherit;
+    font-weight: 700;
+    text-decoration: none;
+    color: #ffffff;
+    background: #2f80ed;
+    cursor: pointer;
+}
+
+nav a {
+    background: rgba(255, 255, 255, 0.14);
+}
+
+nav a:hover,
+.boton:hover,
+button:hover {
+    background: #1f6fd3;
+}
+
+.contenedor-inicio {
+    width: min(760px, calc(100% - 32px));
+    margin: 36px auto;
+    display: grid;
+    gap: 14px;
+}
+
+.boton {
+    text-align: center;
+}
+
+.contenedor {
+    width: min(1100px, calc(100% - 32px));
+    margin: 32px auto;
+    display: grid;
+    gap: 24px;
+}
+
+.panel,
+.tarjeta {
+    border: 1px solid #dbe2ea;
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 0 8px 22px rgba(34, 40, 49, 0.08);
+}
+
+.panel {
+    padding: 22px;
+}
+
+.panel h2 {
+    margin: 0 0 18px;
+    color: #1f2a36;
+}
+
+form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(180px, 1fr)) auto;
+    align-items: end;
+    gap: 8px 12px;
+}
+
+label {
+    font-weight: 700;
+    color: #34495e;
+}
+
+label[for="universo"] {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+#universo {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+label[for="min_anio"] {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+#min_anio {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+form button {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+select,
+input {
+    width: 100%;
+    border: 1px solid #cbd5df;
+    border-radius: 6px;
+    padding: 10px 12px;
+    font: inherit;
+    color: #222831;
+    background: #ffffff;
+}
+
+.panel > p {
+    margin: 18px 0 0;
+    font-weight: 700;
+    color: #34495e;
+}
+
+.rejilla {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 18px;
+}
+
+.rejilla > p {
+    margin: 0;
+    padding: 18px;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #34495e;
+}
+
+.tarjeta {
+    padding: 20px;
+}
+
+.tarjeta h2 {
+    margin: 0 0 14px;
+    font-size: 1.2rem;
+    color: #1f2a36;
+}
+
+.tarjeta p {
+    margin: 0 0 10px;
+    line-height: 1.5;
+}
+
+.tarjeta p:last-child {
+    margin-bottom: 0;
+}
+
+.tarjeta strong {
+    color: #263544;
+}
+
+@media (max-width: 760px) {
+    header {
+        padding: 28px 16px;
+    }
+
+    header h1 {
+        font-size: 1.55rem;
+    }
+
+    .contenedor,
+    .contenedor-inicio {
+        width: min(100% - 24px, 520px);
+        margin-top: 24px;
+    }
+
+    form {
+        grid-template-columns: 1fr;
+    }
+
+    label[for="universo"],
+    #universo,
+    label[for="min_anio"],
+    #min_anio,
+    form button {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    button {
+        width: 100%;
+    }
+}
