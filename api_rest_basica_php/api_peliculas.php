@@ -56,6 +56,8 @@
     $min_anio = $_GET["min_anio"] ?? "";
     // Si la url viene con ?formato=Comedia, guarda Comedia, si no, guarda "".
     $formato = $_GET["formato"] ?? "";
+    // Si la url biene con ?valoracion_min=5, guarda 5, si no, guarda "".
+    $valoracion_min = $_GET["valoracion_min"] ?? "";
 
     // Array donde se guardan los resultados.
     $resultado = [];
@@ -76,6 +78,10 @@
         }
         // Si el usuario ha puesto un formato concreto y la pelicula no tiene ese formato entonces no coincide.
         if($formato != "" && $pelicula["formato"] != $formato){
+            $coincide = false;
+        }
+
+        if($valoracion_min != "" && $pelicula["valoracion"] < $valoracion_min){
             $coincide = false;
         }
 

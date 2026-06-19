@@ -5,6 +5,7 @@
     $universo = $_GET["universo"] ?? "";
     $min_anio = $_GET["min_anio"] ?? "";
     $formato = $_GET["formato"] ?? "";
+    $valoracion_min = $_GET["valoracion_min"] ?? "";
 
     // Define la URL.
     $url = "http://localhost/practicas-clase/api_rest_basica_php/api_peliculas.php";
@@ -27,6 +28,11 @@
     // Si hay filtro de formato se añade.
     if($formato != ""){
         $parametros[] = "formato=" . urlencode($formato);
+    }
+
+    // Si hay filtro de valoracion minima se añade.
+    if($valoracion_min != ""){
+        $parametros[] = "valoracion_min=" . urldecode($valoracion_min);
     }
 
     // Si hay parámetros(filtros), los une a la URL
@@ -83,6 +89,9 @@
                     <option value="Comedia">Comedia</option>
                     <option value="Superhéroes">Superhéroes</option>
                 </select>
+
+                <label for="valoracion_min">Valoración mínima</label>
+                <input type="number" name="valoracion_min" id="valoracion_min" placeholder="Ejemplo: 7">
 
                 <button type="submit">Aplicar Filtros</button>
             </form>
