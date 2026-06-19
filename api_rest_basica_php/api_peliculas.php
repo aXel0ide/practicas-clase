@@ -54,6 +54,8 @@
     $universo = $_GET["universo"] ?? "";
     // Si en la URL viene ?min_anio=2018, guarda 2018, si no, guarda "".
     $min_anio = $_GET["min_anio"] ?? "";
+    // Si la url viene con ?formato=Comedia, guarda Comedia, si no, guarda "".
+    $formato = $_GET["formato"] ?? "";
 
     // Array donde se guardan los resultados.
     $resultado = [];
@@ -70,6 +72,10 @@
         }
         // Si el usuario ha puesto un año mínimo y la película es anterior a ese año, entonces no coincide.
         if($min_anio != "" && $pelicula["anio"] < $min_anio){
+            $coincide = false;
+        }
+        // Si el usuario ha puesto un formato concreto y la pelicula no tiene ese formato entonces no coincide.
+        if($formato != "" && $pelicula["formato"] != $formato){
             $coincide = false;
         }
 

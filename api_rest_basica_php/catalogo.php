@@ -4,6 +4,7 @@
     // Recoge filtros de la URL por si existiesen datos en ella, si no, se guardan como cadena vacía.
     $universo = $_GET["universo"] ?? "";
     $min_anio = $_GET["min_anio"] ?? "";
+    $formato = $_GET["formato"] ?? "";
 
     // Define la URL.
     $url = "http://localhost/practicas-clase/api_rest_basica_php/api_peliculas.php";
@@ -21,6 +22,11 @@
     // Si hay filtro de año mínimo se añade.
     if($min_anio != ""){
         $parametros[] = "min_anio=" . urlencode($min_anio);
+    }
+
+    // Si hay filtro de formato se añade.
+    if($formato != ""){
+        $parametros[] = "formato=" . urlencode($formato);
     }
 
     // Si hay parámetros(filtros), los une a la URL
@@ -69,6 +75,14 @@
 
                 <label for="min_anio">Año mínimo</label>
                 <input type="number" name="min_anio" id="min_anio" placeholder="Ejemplo: 2020">
+
+                <label for="formato">Formato</label>
+                <select name="formato" id="formato">
+                    <option value=""> -- Cualquier formato -- </option>
+                    <option value="Acción">Acción</option>
+                    <option value="Comedia">Comedia</option>
+                    <option value="Superhéroes">Superhéroes</option>
+                </select>
 
                 <button type="submit">Aplicar Filtros</button>
             </form>
