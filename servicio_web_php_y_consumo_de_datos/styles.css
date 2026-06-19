@@ -27,6 +27,30 @@ header p {
     line-height: 1.5;
 }
 
+.contenedor-inicio {
+    width: min(720px, calc(100% - 32px));
+    margin: 36px auto;
+    display: grid;
+    gap: 14px;
+}
+
+.boton-enlace {
+    display: block;
+    padding: 15px 18px;
+    border: 1px solid #dbe2ea;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 700;
+    color: #ffffff;
+    background: #2f80ed;
+    box-shadow: 0 8px 22px rgba(34, 40, 49, 0.08);
+}
+
+.boton-enlace:hover {
+    background: #1f6fd3;
+}
+
 .contenedor {
     width: min(1100px, calc(100% - 32px));
     margin: 32px auto;
@@ -84,6 +108,11 @@ header p {
         width: min(100% - 24px, 420px);
         margin-top: 24px;
         gap: 18px;
+    }
+
+    .contenedor-inicio {
+        width: min(100% - 24px, 420px);
+        margin-top: 24px;
     }
 
     .tarjeta img {
