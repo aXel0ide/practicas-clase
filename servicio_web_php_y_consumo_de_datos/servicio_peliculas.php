@@ -33,10 +33,28 @@
             "titulo" => "Mortadelo y Filemón contra Jimmy el Cachondo",
             "universo" => "Español",
             "anio" => 2014,
-            "director" => "Animación",
+            "director" => "Javier Fesser",
             "formato" => "Animación",
             "imagen" => "https://static.wikia.nocookie.net/mortadelo/images/2/25/Mortadelo_y_Filem%C3%B3n_contra_Jimmy_el_cachondo.jpg/revision/latest?cb=20150824135309&path-prefix=es",
             "sinopsis" => "Aventura disparatada basada en los personajes clásicos de Ibáñez."
+        ],
+        [
+            "titulo" => "Ocho apellidos vascos",
+            "universo" => "Español",
+            "anio" => 2014,
+            "director" => "Emilio Martínez-Lázaro",
+            "formato" => "Comedia/Romance",
+            "imagen" => "https://static.wikia.nocookie.net/entrenoticias/images/f/fa/Cartel_8_apellidos_vascos.jpg/revision/latest?cb=20151211092612&path-prefix=es",
+            "sinopsis" => "Rafael, un sevillano que nunca ha dejado Andalucía, decide salir de su tierra natal para seguir a Amaia, una chica vasca que no se parece a ninguna otra mujer que haya conocido."
+        ],
+        [
+            "titulo" => "Las Aventuras de Tadeo Jones",
+            "universo" => "Español",
+            "anio" => 2012,
+            "director" => "Enrique Gato",
+            "formato" => "Infantil/Aventura",
+            "imagen" => "https://static.wikia.nocookie.net/wiki-doblaje-espana/images/8/80/Las_aventuras_de_Tadeo_Jones.png/revision/latest?cb=20220416145654&path-prefix=es",
+            "sinopsis" => "Tadeo, un albañil soñador que trabaja en Madrid, es confundido por accidente con un eminente arqueólogo. Gracias a esto, es enviado a una expedición a Perú. Junto a una intrépida arqueóloga, su perro Jeff, un loro mudo y un peculiar guía, intentará salvar la mítica ciudad de Paititi de unos malvados cazatesoros."
         ]
     ];
 
