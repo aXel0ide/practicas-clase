@@ -79,6 +79,10 @@
         ]
     ];
 
+    // Crea 2 arrays donde almacena los universos y formatos permitidos.
+    $universos_permitidos = ["", "Marvel", "DC", "Español"];
+    $formatos_permitidos = ["", "Acción", "Superhéroes", "Comedia", "Animación"];
+
     // Lee los parámetros de la URL.
 
     // Si en la URL viene ?univeros=Marvel, guarda Marvel, si no, guarda "".
@@ -89,6 +93,26 @@
     $formato = $_GET["formato"] ?? "";
     // Si la url biene con ?valoracion_min=5, guarda 5, si no, guarda "".
     $valoracion_min = $_GET["valoracion_min"] ?? "";
+
+    // Comprueba que el universo que se le ha pasado está dentro de los universos permitidos.
+    if(!in_array($universo, $universos_permitidos)){
+        responder_json(400, "error", "El universo indicado no es válido.");
+    }
+
+    // Commprueba que el formato que se le ha pasado está dentro de los formatos permitidos.
+    if(!in_array($formato, $formatos_permitidos)){
+        responder_json(400, "error", "El formato indicado no es válido.");
+    }
+
+    // Comprueba que, si se le ha pasado un año, este sea numérico, mayor a 1900 o no superior al año actual.
+    if($min_anio !== "" && (!is_numeric($min_anio) || $min_anio < 1900 || $min_anio > date("Y"))){
+        responder_json(400, "error", "El año debe ser numérico y razonable.");
+    }
+
+    // Compruega que, si se le ha pasado una valoración, esta sea numérica, mayor a 0 y menor a 10.
+    if($valoracion_min !== "" && (!is_numeric($valoracion_min) || $valoracion_min < 0 || $valoracion_min > 10)){
+        responder_json(400, "error", "La valoración mínima debe estar entre 0 y 10.");
+    }
 
     // Array donde se guardan los resultados.
     $resultado = [];
