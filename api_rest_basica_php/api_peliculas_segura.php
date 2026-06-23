@@ -4,6 +4,27 @@
     // Dice al navegador que la respuesta será JSON.
     header("Content-Type: application/json; charset=UTF-8");
 
+    // Define una función para construir y enviar una respuesta JSON desde la API
+    function responder_json($codigo, $estado, $mensaje, $datos = [], $filtros = []){
+        // Establece el código HTTP real de la respuesta.
+        /* POR EJEMPLO. $CODIGO = 404, EL NAVEGADOR O CLIENTE RECIBIRÁ UNA RESPUESTA HTTP 404 */
+        http_response_code($codigo);
+
+        // Array asociativo que será la estructura final que luego se convertirá a JSON
+        $respuesta = [
+            "estado" => $estado,
+            "codigo" => $codigo,
+            "mensaje" => $mensaje,
+            "total" => count($datos),
+            "filtros" => $filtros,
+            "datos" => $datos
+        ];
+
+        // Convierte el array a respuesta JSON
+        echo json_encode($respuesta, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        exit;
+    }
+
     // Array bidimensional numérico de películas. Cada película es un array asociativo.
     $peliculas = [
         [
