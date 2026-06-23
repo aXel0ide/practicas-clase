@@ -5,7 +5,7 @@
     header("Content-Type: application/json; charset=UTF-8");
 
     // Define una función para construir y enviar una respuesta JSON desde la API
-    function responder_json($codigo, $estado, $mensaje, $datos = [], $filtros = []){
+    function responder_json(int $codigo, string $estado, string $mensaje, $datos = [], $filtros = []){
         // Establece el código HTTP real de la respuesta.
         /* POR EJEMPLO. $CODIGO = 404, EL NAVEGADOR O CLIENTE RECIBIRÁ UNA RESPUESTA HTTP 404 */
         http_response_code($codigo);
@@ -146,23 +146,12 @@
         }
     }
 
-    // Crea la respuesta final.
-    /* MONTA UN ARRAY CON:
-        - ESTADO: INDICA QUE LA API RESPONDIÓ BIEN.
-        - TOTAL: CUANTOS RESULTADOS HAY.
-        - FILTROS: QUE FILTROS SE USARON.
-        - DATOS: PELICULAS ENCONTRADAS.
-    */
-    $respuesta = [
-        "estado" => "ok",
-        "total" => count($resultado),
-        "filtros" => [
-            "universo" => $universo,
-            "min_anio" => $min_anio
-        ],
-        "datos" => $resultado
+    $filtros = [
+        "universo" => $universo,
+        "formato" => $formato,
+        "min_anio" => $min_anio,
+        "valoracion_min" => $valoracion_min
     ];
-
-    // Finalmente convierte el array PHP a JSON y lo muestra bonito.
-    echo json_encode($respuesta, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    
+    responder_json(200, "ok", "Consulta realizada correctamente.", $resultado, $filtros);
 ?>
