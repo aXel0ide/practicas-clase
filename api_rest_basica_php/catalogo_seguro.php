@@ -92,6 +92,7 @@
         <nav>
             <a href="./index.php">Inicio</a>
             <a href="./catalogo_seguro.php">Catálogo Completo</a>
+            <a href="./api_documentacion.php">Documentación</a>
         </nav>
     </header>
     <main class="contenedor">
@@ -100,6 +101,7 @@
             
             <form action="./catalogo_seguro.php" method="get">
                 <label for="universo">Universo</label>
+
                 <select name="universo" id="universo">
                     <option value="">Todos</option>
                     <option value="Marvel">Marvel</option>
@@ -111,6 +113,7 @@
                 <input type="number" name="min_anio" id="min_anio" placeholder="Ejemplo: 2020">
 
                 <label for="formato">Formato</label>
+                
                 <select name="formato" id="formato">
                     <option value=""> -- Cualquier formato -- </option>
                     <option value="Acción">Acción</option>
