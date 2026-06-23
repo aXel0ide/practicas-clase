@@ -10,7 +10,7 @@
         /* POR EJEMPLO. $CODIGO = 404, EL NAVEGADOR O CLIENTE RECIBIRÁ UNA RESPUESTA HTTP 404 */
         http_response_code($codigo);
 
-        // Array asociativo que será la estructura final que luego se convertirá a JSON
+        // Array asociativo que será la estructura final que luego se convertirá a JSON.
         $respuesta = [
             "estado" => $estado,
             "codigo" => $codigo,
@@ -20,9 +20,19 @@
             "datos" => $datos
         ];
 
-        // Convierte el array a respuesta JSON
+        // Convierte el array a respuesta JSON.
         echo json_encode($respuesta, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
         exit;
+    }
+
+    // Guarda una clave válida.
+    $clave_correcta = "curso2026";
+    // Lee de la URL un parámetro llamado URL y si no hay clave guarda "".
+    $clave_recibida = $_GET["clave"] ?? "";
+
+    // Compara la clave recibida con la clave correcta, si no es igual la API responde con un JSON usando la función.
+    if($clave_recibida !== $clave_correcta){
+        responder_json(401, "error", "No autorizado. Falta una clave válida.");
     }
 
     // Array bidimensional numérico de películas. Cada película es un array asociativo.
