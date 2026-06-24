@@ -93,8 +93,13 @@
     $min_anio = $_GET["min_anio"] ?? "";
     // Si la url viene con ?formato=Comedia, guarda Comedia, si no, guarda "".
     $formato = $_GET["formato"] ?? "";
-    // Si la url biene con ?valoracion_min=5, guarda 5, si no, guarda "".
+    // Si la url viene con ?valoracion_min=5, guarda 5, si no, guarda "".
     $valoracion_min = $_GET["valoracion_min"] ?? "";
+    // Si la url viene con ?orden=anio_desc, guarda anio_desc, si no, guarda "".
+    $orden = $_GET["orden"] ?? "";
+
+    // Valores permitidos para el orden.
+    $ordenes_permitidas = ["", "anio_desc", "valoracion_desc"];
 
     // Comprueba que el universo que se le ha pasado está dentro de los universos permitidos.
     if(!in_array($universo, $universos_permitidos)){
@@ -114,6 +119,11 @@
     // Compruega que, si se le ha pasado una valoración, esta sea numérica, mayor a 0 y menor a 10.
     if($valoracion_min !== "" && (!is_numeric($valoracion_min) || $valoracion_min < 0 || $valoracion_min > 10)){
         responder_json(400, "error", "La valoración mínima debe estar entre 0 y 10.");
+    }
+
+    // Comprueba que el valor que se le ha asignado a $orden es válido.
+    if(!in_array($orden, $ordenes_permitidas)){
+        responder_json(400, "error", "El orden indicado no es válido.");
     }
 
     // Array donde se guardan los resultados.
@@ -146,6 +156,42 @@
         if($coincide){
             $resultado[] = $pelicula;
         }
+    }
+
+    // En este punto $resultado contiene las películas que han pasado los filtros.
+
+    // Si el usuario ha pedido ordenar por año de mayor a menor.
+    if($orden == "anio_desc"){
+        /*
+            usort() ordena el array $resultado.
+            Para hacerlo, PHP compara las películas de dos en dos.
+            En cada comparación, $a representa una película y $b representa otra.
+            Nosotros solo indicamos la regla de ordenación.
+        */
+        usort($resultado, function ($a, $b) {
+        /*
+            El operador <=> compara dos valores:
+            - devuelve -1 si el valor de la izquierda es menor
+            - devuelve 0 si son iguales
+            - devuelve 1 si el valor de la izquierda es mayor
+
+            Al escribir $b["anio"] <=> $a["anio"],
+            invertimos la comparación normal y conseguimos ordenar
+            los años de mayor a menor.
+
+            CHULETA
+            $a["anio"] <=> $b["anio"]; // menor a mayor
+            $b["anio"] <=> $a["anio"]; // mayor a menor
+        */
+            return $b["anio"] <=> $a["anio"];
+        });
+    }
+
+    // Si el usuario ha pedido ordenar por valoración de mayor a menor.
+    if($orden == "valoracion_desc"){
+        usort($resultado, function ($a, $b) {
+            return $b["valoracion"] <=> $a["valoracion"];
+        });
     }
 
     $filtros = [

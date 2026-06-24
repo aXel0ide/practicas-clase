@@ -9,6 +9,7 @@
     $universo = $_GET["universo"] ?? "";
     $min_anio = $_GET["min_anio"] ?? "";
     $formato = $_GET["formato"] ?? "";
+    $orden = $_GET["orden"] ?? "";
     $valoracion_min = $_GET["valoracion_min"] ?? "";
 
     // Define la URL.
@@ -39,6 +40,11 @@
     // Si hay filtro de valoracion minima se añade.
     if($valoracion_min != ""){
         $parametros["valoracion_min"] = $valoracion_min;
+    }
+
+    // Si hay filtro de orden se añade.
+    if($orden != ""){
+        $parametros["orden"] = $orden;
     }
 
     // Construyr la parte final de una URL con los parámetros.
@@ -119,6 +125,13 @@
                     <option value="Acción">Acción</option>
                     <option value="Comedia">Comedia</option>
                     <option value="Superhéroes">Superhéroes</option>
+                </select>
+
+                <label for="ordenar">Ordenar por</label>
+                <select name="orden" id="orden">
+                    <option value="">Sin ordenar</option>
+                    <option value="anio_desc">Año: mayor a menor</option>
+                    <option value="valoracion_desc">Valoración: mayor a menor</option>
                 </select>
 
                 <label for="valoracion_min">Valoración mínima</label>
