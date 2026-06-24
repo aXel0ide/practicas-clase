@@ -143,9 +143,9 @@ button:hover {
 
 form {
     display: grid;
-    grid-template-columns: repeat(2, minmax(180px, 1fr)) auto;
+    grid-template-columns: repeat(5, minmax(130px, 1fr));
     align-items: end;
-    gap: 8px 12px;
+    gap: 8px 14px;
 }
 
 label {
@@ -173,9 +173,41 @@ label[for="min_anio"] {
     grid-row: 2;
 }
 
-form button {
+label[for="formato"] {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+#formato {
     grid-column: 3;
     grid-row: 2;
+}
+
+label[for="ordenar"] {
+    grid-column: 4;
+    grid-row: 1;
+}
+
+#orden {
+    grid-column: 4;
+    grid-row: 2;
+}
+
+label[for="valoracion_min"] {
+    grid-column: 5;
+    grid-row: 1;
+}
+
+#valoracion_min {
+    grid-column: 5;
+    grid-row: 2;
+}
+
+form button {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    justify-self: end;
+    min-width: 180px;
 }
 
 select,
@@ -232,6 +264,68 @@ input {
     color: #263544;
 }
 
+@media (max-width: 920px) {
+    form {
+        grid-template-columns: repeat(2, minmax(180px, 1fr));
+    }
+
+    label[for="universo"] {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    #universo {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    label[for="min_anio"] {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    #min_anio {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    label[for="formato"] {
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    #formato {
+        grid-column: 1;
+        grid-row: 4;
+    }
+
+    label[for="ordenar"] {
+        grid-column: 2;
+        grid-row: 3;
+    }
+
+    #orden {
+        grid-column: 2;
+        grid-row: 4;
+    }
+
+    label[for="valoracion_min"] {
+        grid-column: 1;
+        grid-row: 5;
+    }
+
+    #valoracion_min {
+        grid-column: 1;
+        grid-row: 6;
+    }
+
+    form button {
+        grid-column: 2;
+        grid-row: 6;
+        width: 100%;
+    }
+}
+
 @media (max-width: 760px) {
     header {
         padding: 28px 16px;
@@ -260,6 +354,12 @@ input {
     #universo,
     label[for="min_anio"],
     #min_anio,
+    label[for="formato"],
+    #formato,
+    label[for="ordenar"],
+    #orden,
+    label[for="valoracion_min"],
+    #valoracion_min,
     form button {
         grid-column: 1;
         grid-row: auto;
