@@ -26,12 +26,14 @@
     }
 
     // Guarda una clave válida.
-    $clave_correcta = "curso2026";
+    const CLAVE_CORRECTA = "curso2026";
+    // Clave de lectura
+    const CLAVE_LECTURA = "clave_lectura2026";
     // Lee de la URL un parámetro llamado URL y si no hay clave guarda "".
     $clave_recibida = $_GET["clave"] ?? "";
 
     // Compara la clave recibida con la clave correcta, si no es igual la API responde con un JSON usando la función.
-    if($clave_recibida !== $clave_correcta){
+    if($clave_recibida !== CLAVE_CORRECTA && $clave_recibida !== CLAVE_LECTURA){
         responder_json(401, "error", "No autorizado. Falta una clave válida.");
     }
 
