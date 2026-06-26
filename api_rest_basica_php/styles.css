@@ -144,6 +144,10 @@ button:hover {
 form {
     display: grid;
     grid-template-columns: repeat(6, minmax(120px, 1fr));
+    grid-template-areas:
+        "titulo-label universo-label min-label formato-label orden-label valoracion-label"
+        "titulo universo min-anio formato orden valoracion"
+        ". . . . . boton";
     align-items: end;
     gap: 8px 14px;
 }
@@ -154,68 +158,55 @@ label {
 }
 
 label[for="titulo"] {
-    grid-column: 1;
-    grid-row: 1;
+    grid-area: titulo-label;
 }
 
 #titulo {
-    grid-column: 1;
-    grid-row: 2;
+    grid-area: titulo;
 }
 
 label[for="universo"] {
-    grid-column: 2;
-    grid-row: 1;
+    grid-area: universo-label;
 }
 
 #universo {
-    grid-column: 2;
-    grid-row: 2;
+    grid-area: universo;
 }
 
 label[for="min_anio"] {
-    grid-column: 3;
-    grid-row: 1;
+    grid-area: min-label;
 }
 
 #min_anio {
-    grid-column: 3;
-    grid-row: 2;
+    grid-area: min-anio;
 }
 
 label[for="formato"] {
-    grid-column: 4;
-    grid-row: 1;
+    grid-area: formato-label;
 }
 
 #formato {
-    grid-column: 4;
-    grid-row: 2;
+    grid-area: formato;
 }
 
 label[for="ordenar"] {
-    grid-column: 5;
-    grid-row: 1;
+    grid-area: orden-label;
 }
 
 #orden {
-    grid-column: 5;
-    grid-row: 2;
+    grid-area: orden;
 }
 
 label[for="valoracion_min"] {
-    grid-column: 6;
-    grid-row: 1;
+    grid-area: valoracion-label;
 }
 
 #valoracion_min {
-    grid-column: 6;
-    grid-row: 2;
+    grid-area: valoracion;
 }
 
 form button {
-    grid-column: 1 / -1;
-    grid-row: 3;
+    grid-area: boton;
     justify-self: end;
     min-width: 180px;
 }
@@ -277,71 +268,17 @@ input {
 @media (max-width: 920px) {
     form {
         grid-template-columns: repeat(2, minmax(180px, 1fr));
-    }
-
-    label[for="titulo"] {
-        grid-column: 1;
-        grid-row: 1;
-    }
-
-    #titulo {
-        grid-column: 1;
-        grid-row: 2;
-    }
-
-    label[for="universo"] {
-        grid-column: 2;
-        grid-row: 1;
-    }
-
-    #universo {
-        grid-column: 2;
-        grid-row: 2;
-    }
-
-    label[for="min_anio"] {
-        grid-column: 1;
-        grid-row: 3;
-    }
-
-    #min_anio {
-        grid-column: 1;
-        grid-row: 4;
-    }
-
-    label[for="formato"] {
-        grid-column: 2;
-        grid-row: 3;
-    }
-
-    #formato {
-        grid-column: 2;
-        grid-row: 4;
-    }
-
-    label[for="ordenar"] {
-        grid-column: 1;
-        grid-row: 5;
-    }
-
-    #orden {
-        grid-column: 1;
-        grid-row: 6;
-    }
-
-    label[for="valoracion_min"] {
-        grid-column: 2;
-        grid-row: 5;
-    }
-
-    #valoracion_min {
-        grid-column: 2;
-        grid-row: 6;
+        grid-template-areas:
+            "titulo-label universo-label"
+            "titulo universo"
+            "min-label formato-label"
+            "min-anio formato"
+            "orden-label valoracion-label"
+            "orden valoracion"
+            "boton boton";
     }
 
     form button {
-        grid-column: 1 / -1;
-        grid-row: 7;
         width: 100%;
     }
 }
@@ -368,23 +305,20 @@ input {
 
     form {
         grid-template-columns: 1fr;
-    }
-
-    label[for="titulo"],
-    #titulo,
-    label[for="universo"],
-    #universo,
-    label[for="min_anio"],
-    #min_anio,
-    label[for="formato"],
-    #formato,
-    label[for="ordenar"],
-    #orden,
-    label[for="valoracion_min"],
-    #valoracion_min,
-    form button {
-        grid-column: 1;
-        grid-row: auto;
+        grid-template-areas:
+            "titulo-label"
+            "titulo"
+            "universo-label"
+            "universo"
+            "min-label"
+            "min-anio"
+            "formato-label"
+            "formato"
+            "orden-label"
+            "orden"
+            "valoracion-label"
+            "valoracion"
+            "boton";
     }
 
     button {
