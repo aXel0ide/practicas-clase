@@ -78,7 +78,23 @@
                 "director" => "Ryan Coogler",
                 "formato" => "Superhéroes",
                 "valoracion" => 7.3
-            ]
+            ],
+            [
+                "titulo" => "Batman el Molon",
+                "universo" => "DC",
+                "anio" => 2025,
+                "director" => "Matt Reeves",
+                "formato" => "Comedia",
+                "valoracion" => 10
+            ],
+            [
+                "titulo" => "El Increible Batman",
+                "universo" => "DC",
+                "anio" => 1990,
+                "director" => "Matt Reeves",
+                "formato" => "Acción",
+                "valoracion" => 8.7
+            ],
         ];
 
     // Crea 2 arrays donde almacena los universos y formatos permitidos.
@@ -142,8 +158,18 @@
         responder_json(400, "error", "El orden indicado no es válido.");
     }
 
-    if($titulo !== "" && !in_array($titulo, $titulos_permitidos)){
-        responder_json(404, "error", "No existe ninguna película con ese título.");
+    if($titulo !== ""){
+        $existe_titulo = false;
+
+        foreach($titulos_permitidos as $titulo_permitido){
+            if(mb_strpos($titulo_permitido, $titulo) !== false){
+                $existe_titulo = true;
+            }
+        }
+
+        if(!$existe_titulo){
+            responder_json(404, "error", "No existe ninguna película con ese título.");
+        }
     }
 
     // Array donde se guardan los resultados.
@@ -172,7 +198,7 @@
             $coincide = false;
         }
 
-        if($titulo != "" && mb_strtoupper($pelicula["titulo"], "UTF-8") != $titulo){
+        if($titulo != "" && mb_strpos(mb_strtoupper($pelicula["titulo"], "UTF-8"), $titulo) === false){
             $coincide = false;
         }
 
