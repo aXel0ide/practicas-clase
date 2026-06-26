@@ -11,6 +11,7 @@
     $formato = $_GET["formato"] ?? "";
     $orden = $_GET["orden"] ?? "";
     $valoracion_min = $_GET["valoracion_min"] ?? "";
+    $titulo = $_GET["titulo"] ?? "";
 
     // Define la URL.
     $url = "http://localhost/practicas-clase/api_rest_basica_php/api_peliculas_segura.php";
@@ -45,6 +46,10 @@
     // Si hay filtro de orden se añade.
     if($orden != ""){
         $parametros["orden"] = $orden;
+    }
+
+    if($titulo != ""){
+        $parametros["titulo"] = $titulo;
     }
 
     // Construyr la parte final de una URL con los parámetros.
@@ -106,6 +111,9 @@
             <h2>Filtrar catálogo</h2>
             
             <form action="./catalogo_seguro.php" method="get">
+                <label for="titulo">Titulo</label>
+                <input type="text" name="titulo" id="titulo">
+
                 <label for="universo">Universo</label>
 
                 <select name="universo" id="universo">
@@ -146,7 +154,7 @@
         <section class="rejilla">
             <?php 
                 if($respuesta["estado"] !== "ok"){
-                    echo "<p>No se pueden mostrar resultados porque la API ha devuelto un error.</p>";
+                    echo "<p>No se pueden mostrar resultados porque la API ha devuelto un error. <strong>ESTADO: " . $respuesta["estado"] . ", ERROR: " . $respuesta["codigo"] . "</strong></p>";
                 }elseif(count($peliculas) == 0){
                     echo "<p>No hay películas que coincidan con esos fitros.</p>";
                 }else{
