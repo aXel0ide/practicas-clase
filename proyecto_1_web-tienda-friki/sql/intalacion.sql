@@ -65,3 +65,37 @@ create table consultas (
     /* SI EN LA TABLA PRODUCTOS SE BORRA EL ID DE UNO QUE ESTÁ EN CONSULTAS, SE DEJA EL VALOR DE PRODUCTO_ID EN NULL */
     on delete set null
 );
+
+/* INSERTAR DATOS INICIALES OBLIGATORIOS */
+insert into categorias (nombre, descripcion) values
+('Comic', 'Comics europeos, españoles y americanos.'),
+('Manga', 'Manga y novelas gráficas japonesas.'),
+('Figura', 'Figura y coleccionismo'),
+('Pelicula', 'Películas en DVD, Blue-Ray o formato similar.'),
+('Serie', 'Series de televisión relacionadas con la cultura friki.'),
+('Videojuego', 'Videojuegos basados en cómics, cine o personajes'),
+('Merchandaising', 'Camisetas, tazas, pósters y otros productos.');
+
+insert into estados_producto (nombre, descripcion) values
+('Nuevo', 'Producto nuevo.'),
+('Usado', 'Producto de segunda mano en buen estado.'),
+('Reserva', 'Producto disponible para reservar.'),
+('Descatalogado', 'Producto no disponible actualmente.');
+
+insert into editoriales (nombre, pais, web, tipo) values
+('ECC Ediciones', 'España', 'https://www.eccediciones.com', 'Editorial'),
+('Panini Comics', 'Italia', 'https://www.panini.es', 'Editorial'),
+('Norma Editorial', 'España', 'https://www.normaeditorial.com', 'Editorial'),
+('Hasbro', 'Estados Unidos', 'https://shop.hasbro.com', 'Fabricante'),
+('Warner Bros', 'Estados Unidos', 'https://www.warnerbros.com', 'Distribuidora'),
+('Microids', 'Francia', 'https://microids.com', 'Videojuegos');
+
+insert into productos (nombre, descripcion, precio, stock, imagen, destacado, categoria_id, editorial_id, estado_id) values
+('Batman: Año Uno', 'Comic de Batman recomendado para empezar con el personaje.', 16.95, 8, 'batman_anio_uno.jpg', 1, 1, 1, 1),
+('Astérix el Galo', 'Aventura clásica de Astérix y Obélix.', 12.95, 10, 'asterix_galo.jpg', 1, 1, 3, 1),
+('Blacksad Integral', 'Edición integral de la serie Blacksad', 34.95, 5, 'blacksad_integral.jpg', 1, 1, 3, 1),
+('Figura Spider-Man', 'Figura articulada de Spider-Man para coleccionistas.', 24.95, 6, 'figura_spiderman.jpg', 1, 3, 4, 1),
+('V de Vendetta Blue-Ray', 'Película basada en la novela gráfica V de Vendetta.', 9.95, 4, 'v_vendetta.jpg', 0, 4, 5, 2),
+('The Walking Dead Temporada 1', 'Primera temporada de la serie en formato físico.', 14.95, 7, 'walking_dead_t1.jpg', 0, 5, 5, 1),
+('Blacksad: Under the Skin', 'Videojuego de investigación basado en Blacksad.', 19.95, 7, 'blacksad_juego.jpg', 0, 6, 6, 1),
+('Camiseta Superlópez', 'Camiseta inspirada en el personaje Superlópez.', 11.95, 12, 'camiseta_superlopez.jpg', 0, 7, 2, 1);
