@@ -21,8 +21,8 @@
     <?php if($resultado && $resultado->num_rows > 0){ ?>
         <?php while($fila = $resultado->fetch_assoc()){ ?>
            <p>
-                <?php echo htmlspecialchars($fila["nombre"]); ?>
-                <?php echo htmlspecialchars_decode($fila["categoria"]); ?>
+                <?php echo htmlspecialchars($fila["nombre"]); ?>,
+                <?php echo htmlspecialchars_decode($fila["categoria"]); ?>,
                 <?php echo $fila["precio"]; ?> € - 
                 Stock: <?php echo $fila["stock"]; ?>
                 Estado: <?php echo htmlspecialchars($fila["estado"]) ?>
