@@ -1,153 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap");
-
-:root {
-    --fondo: #070812;
-    --fondo-suave: #101225;
-    --superficie: rgba(20, 22, 43, 0.86);
-    --superficie-clara: #191c35;
-    --texto: #f5f6ff;
-    --texto-suave: #aeb4d0;
-    --violeta: #9b5cff;
-    --violeta-claro: #c09bff;
-    --cian: #2de2e6;
-    --borde: rgba(155, 92, 255, 0.24);
-    --sombra: 0 22px 55px rgba(0, 0, 0, 0.38);
-}
-
-* {
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    min-height: 100vh;
-    margin: 0;
-    color: var(--texto);
-    font-family: "Rajdhani", system-ui, sans-serif;
-    font-size: 1.08rem;
-    line-height: 1.6;
-    background:
-        radial-gradient(circle at 15% 8%, rgba(155, 92, 255, 0.18), transparent 28rem),
-        radial-gradient(circle at 88% 35%, rgba(45, 226, 230, 0.09), transparent 25rem),
-        linear-gradient(145deg, #070812 0%, #0c0e1d 55%, #080914 100%);
-}
-
-body::before {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    content: "";
-    pointer-events: none;
-    opacity: 0.22;
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-    background-size: 40px 40px;
-    mask-image: linear-gradient(to bottom, black, transparent 80%);
-}
-
-header {
-    position: relative;
-    overflow: hidden;
-    padding: 5.5rem 1.5rem 4.5rem;
-    text-align: center;
-    border-bottom: 1px solid var(--borde);
-}
-
-header::after {
-    position: absolute;
-    bottom: -8rem;
-    left: 50%;
-    width: 32rem;
-    height: 15rem;
-    content: "";
-    transform: translateX(-50%);
-    border-radius: 50%;
-    background: rgba(155, 92, 255, 0.2);
-    filter: blur(65px);
-}
-
-h1,
-h2,
-h3 {
-    margin-top: 0;
-    font-family: "Orbitron", system-ui, sans-serif;
-    line-height: 1.2;
+﻿header {
+    padding-top: 5.5rem;
+    padding-bottom: 4.5rem;
 }
 
 header h1 {
-    position: relative;
-    z-index: 1;
-    max-width: 900px;
-    margin: 0 auto 1rem;
+    margin-bottom: 1rem;
     font-size: clamp(2.35rem, 7vw, 5.4rem);
     letter-spacing: -0.045em;
-    text-transform: uppercase;
-    background: linear-gradient(110deg, #ffffff 15%, var(--violeta-claro) 55%, var(--cian));
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    filter: drop-shadow(0 0 24px rgba(155, 92, 255, 0.24));
 }
 
-header p {
-    position: relative;
-    z-index: 1;
-    max-width: 700px;
-    margin: 0 auto;
-    color: var(--texto-suave);
-    font-size: clamp(1.05rem, 2.4vw, 1.35rem);
-    font-weight: 500;
-    letter-spacing: 0.06em;
-}
-
-nav {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    display: flex;
-    justify-content: center;
-    gap: 0.35rem;
-    padding: 0.8rem 1rem;
-    overflow-x: auto;
-    border-bottom: 1px solid var(--borde);
-    background: rgba(7, 8, 18, 0.82);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(16px);
-}
-
-nav a {
-    flex: 0 0 auto;
-    padding: 0.62rem 1rem;
-    color: var(--texto-suave);
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-decoration: none;
-    border: 1px solid transparent;
-    border-radius: 999px;
-    transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
-}
-
-nav a:hover,
-nav a:focus-visible,
 nav a:first-child {
     color: #fff;
     border-color: var(--borde);
     background: rgba(155, 92, 255, 0.13);
-    outline: none;
-}
-
-nav a:hover {
-    transform: translateY(-2px);
-}
-
-main {
-    width: min(1160px, calc(100% - 2rem));
-    margin: 0 auto;
-    padding: 4.5rem 0 6rem;
 }
 
 section {
@@ -264,19 +129,6 @@ section > p {
 }
 
 @media (max-width: 600px) {
-    header {
-        padding: 4rem 1rem 3.3rem;
-    }
-
-    nav {
-        justify-content: flex-start;
-    }
-
-    main {
-        width: min(100% - 1.25rem, 1160px);
-        padding-top: 2.8rem;
-    }
-
     section {
         margin-bottom: 3.5rem;
     }
@@ -291,17 +143,5 @@ section > p {
 
     .tarjeta {
         min-height: auto;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    html {
-        scroll-behavior: auto;
-    }
-
-    *,
-    *::before,
-    *::after {
-        transition-duration: 0.01ms !important;
     }
 }

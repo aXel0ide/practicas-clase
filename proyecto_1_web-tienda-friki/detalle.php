@@ -1,6 +1,9 @@
 <?php
     require "./config/conexion.php";
 
+    $producto = null;
+    $error = null;
+
     $id = $_GET["id"] ?? "";
 
     if($id == "" && !is_numeric($id)){
@@ -35,7 +38,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ficha Detallada</title>
-    <link rel="stylesheet" href="./assets/css/styles-detalle.css">
+        <link rel="stylesheet" href="./assets/css/styles.css">
+        <link rel="stylesheet" href="./assets/css/styles-detalle.css">
 </head>
 <body>
     <header>
