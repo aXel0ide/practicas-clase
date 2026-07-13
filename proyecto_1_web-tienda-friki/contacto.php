@@ -100,7 +100,7 @@
                 </select>
                 
                 <label for="mensaje">Mensaje:</label>
-                <textarea name="mensaje" id="Mensaje" required></textarea>
+                <textarea name="mensaje" id="mensaje" required></textarea>
 
                 <button type="submit">Enviar consulta</button>
             </form>
