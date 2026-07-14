@@ -19,3 +19,41 @@ document.addEventListener("DOMContentLoaded", function(){
         });
     }
 });
+
+document.addEventListener("DOMContentLoaded", function(){
+    const slides = document.querySelectorAll(".slide");
+    const btnAnterior = document.querySelector(".anterior");
+    const btnSiguiente = document.querySelector(".siguiente");
+    let actual = 0;
+
+    function mostrarSlide(indice){
+        slides.forEach(function(slide){
+            slide.classList.remove("activo");
+        });
+        if(slides.length > 0){
+            slides[indice].classList.add("activo");
+        }
+    }
+
+    if(slides.length > 0){
+        mostrarSlide(actual);
+        if(btnSiguiente){
+            btnSiguiente.addEventListener("click", function(){
+                actual = (actual + 1) % slides.length;
+                mostrarSlide(actual);
+            })
+        }
+
+        if(btnAnterior){
+            btnAnterior.addEventListener("click", function(){
+                actual = (actual - 1 + slides.length) % slides.length;
+                mostrarSlide(actual)
+            })
+        }
+
+        setInterval(function(){
+            actual = (actual + 1) % slides.length;
+            mostrarSlide(actual);
+        }, 5000)
+    }
+})
