@@ -60,11 +60,11 @@
     <header>
         <h1>Productos</h1>
     </header>
-        <nav>
+    <nav>
         <a href="./index.php">Inicio</a>
+        <a href="./productos.php">Productos</a>
+        <a href="./novedades.php">Novedades</a>
         <a href="./contacto.php">Contacto</a>
-        <a href="./api_json.php">JSON</a>
-        <a href="./api_xml.php">XML</a>
         <a href="./exportar_csv.php">CSV</a>
     </nav>
     <main>
