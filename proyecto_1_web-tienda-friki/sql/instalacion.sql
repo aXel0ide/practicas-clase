@@ -74,7 +74,7 @@ insert into categorias (nombre, descripcion) values
 ('Pelicula', 'Películas en DVD, Blue-Ray o formato similar.'),
 ('Serie', 'Series de televisión relacionadas con la cultura friki.'),
 ('Videojuego', 'Videojuegos basados en cómics, cine o personajes'),
-('Merchandaising', 'Camisetas, tazas, pósters y otros productos.');
+('Merchandising', 'Camisetas, tazas, pósters y otros productos.');
 
 insert into estados_producto (nombre, descripcion) values
 ('Nuevo', 'Producto nuevo.'),
@@ -247,5 +247,5 @@ insert into novedades (producto_id, titulo, subtitulo, imagen_banner, texto_boto
 'banner_videojuegos.jpg', 'Ver videojuego', 1, 1, curdate()),
 (null, 'Semana del cómic europeo', 'Astérix, Blacksad, Tintín y clásicos imprescindibles.', 'banner_comics.jpg',
 'Ver novedades', 1, 2, curdate()),
-(null, 'Merchandaising para coleccionistas.', 'Camisetas, figuras, pósters y productos exclusivos.',
-'banner_merchandaising.jpg', 'Ver colección', 1, 3, curdate());
+(null, 'Merchandising para coleccionistas.', 'Camisetas, figuras, pósters y productos exclusivos.',
+'banner_merchandising.jpg', 'Ver colección', 1, 3, curdate());

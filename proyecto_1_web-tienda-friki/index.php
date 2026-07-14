@@ -37,6 +37,7 @@
     <nav>
         <a href="./index.php">Inicio</a>
         <a href="./productos.php">Productos</a>
+        <a href="./novedades.php">Novedades</a>
         <a href="./contacto.php">Contacto</a>
         <a href="./api_json.php">JSON</a>
         <a href="./api_xml.php">XML</a>
@@ -78,7 +79,7 @@
                     <?php 
                         $clase = $contador == 0 ? "slide activo" : "slide";
                         $banner = $nov["imagen_banner"] != "" ? $nov["imagen_banner"] : "banner_generico.jpg";
-                        $enlace = $nov["producto_id"] != "" ? "detalle.php?id=" . $nov["producto_id"] : "novedades.php";
+                        $enlace = $nov["producto_id"] != "" ? "./detalle.php?id=" . $nov["producto_id"] : "novedades.php";
                     ?>
 
                     <article class="<?php echo $clase; ?>">
