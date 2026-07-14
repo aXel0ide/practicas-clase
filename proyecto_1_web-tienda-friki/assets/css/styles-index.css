@@ -244,6 +244,7 @@ section > p {
 
 .carrusel-btn:hover,
 .carrusel-btn:focus-visible {
+    transform: translateY(-50%);
     color: #090a15;
     border-color: transparent;
     background: linear-gradient(110deg, var(--violeta-claro), var(--cian));
@@ -285,6 +286,11 @@ section > p {
 
     .carrusel-btn {
         top: 1.25rem;
+        transform: none;
+    }
+
+    .carrusel-btn:hover,
+    .carrusel-btn:focus-visible {
         transform: none;
     }
 }

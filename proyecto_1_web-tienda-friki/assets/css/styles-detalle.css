@@ -87,6 +87,40 @@
     margin-left: 0.8rem;
 }
 
+.bloque-videojuego {
+    margin-bottom: 2rem;
+    padding: 1.25rem;
+    border: 1px solid rgba(45, 226, 230, 0.24);
+    border-radius: 16px;
+    background: rgba(45, 226, 230, 0.06);
+}
+
+.bloque-videojuego h2 {
+    margin-bottom: 1rem;
+    font-size: clamp(1.1rem, 2vw, 1.45rem);
+}
+
+.bloque-videojuego ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.7rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.bloque-videojuego li {
+    padding: 0.7rem 0.8rem;
+    color: var(--texto-suave);
+    border: 1px solid rgba(255, 255, 255, 0.055);
+    border-radius: 10px;
+    background: rgba(7, 8, 18, 0.28);
+}
+
+.bloque-videojuego strong {
+    color: var(--texto);
+}
+
 main > .boton {
     width: fit-content;
     margin: 0 auto;
@@ -120,6 +154,10 @@ main > .boton {
         display: block;
     }
 
+    .bloque-videojuego ul {
+        grid-template-columns: 1fr;
+    }
+
     button,
     .boton-secundario {
         width: 100%;
@@ -140,6 +178,7 @@ main > .boton {
     body::before,
     header,
     nav,
+    footer,
     button,
     .boton,
     .boton-secundario {

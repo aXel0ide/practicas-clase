@@ -1,0 +1,89 @@
+.pdf-listado {
+    padding-top: 3rem;
+}
+
+.pdf-listado h1 {
+    margin-bottom: 0.4rem;
+    color: #fff;
+}
+
+.pdf-listado > p {
+    margin-bottom: 1.5rem;
+    color: var(--texto-suave);
+}
+
+.pdf-listado table {
+    width: 100%;
+    margin-top: 1.5rem;
+    overflow: hidden;
+    border-collapse: collapse;
+    border: 1px solid var(--borde);
+    border-radius: 14px;
+    background: rgba(20, 22, 43, 0.78);
+    box-shadow: var(--sombra);
+}
+
+.pdf-listado th,
+.pdf-listado td {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pdf-listado th {
+    color: #fff;
+    background: rgba(155, 92, 255, 0.16);
+}
+
+.pdf-listado td {
+    color: var(--texto-suave);
+}
+
+@media print {
+    nav,
+    footer,
+    .no-imprimir,
+    .boton {
+        display: none !important;
+    }
+
+    body {
+        color: black;
+        background: white;
+    }
+
+    body::before {
+        display: none;
+    }
+
+    main {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    .pdf-listado h1,
+    .pdf-listado p,
+    .pdf-listado th,
+    .pdf-listado td {
+        color: black;
+    }
+
+    .pdf-listado table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid #333;
+        background: white;
+        box-shadow: none;
+    }
+
+    .pdf-listado th,
+    .pdf-listado td {
+        padding: 6px;
+        font-size: 11pt;
+        border: 1px solid #333;
+    }
+}

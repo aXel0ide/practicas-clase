@@ -19,17 +19,26 @@ main > section:first-child h2 {
 
 .filtro {
     display: grid;
-    grid-template-columns: minmax(170px, auto) minmax(220px, 1fr) auto;
-    align-items: center;
-    gap: 1rem;
+    grid-template-columns: repeat(4, minmax(170px, 1fr));
+    align-items: end;
+    gap: 1.15rem;
 }
 
-.filtro label {
+.campo-filtro {
+    display: grid;
+    gap: 0.45rem;
+    min-width: 0;
+}
+
+.campo-filtro label {
     color: var(--texto-suave);
+    font-size: 0.95rem;
     font-weight: 700;
+    letter-spacing: 0.04em;
 }
 
 .filtro select,
+.filtro input,
 .filtro button {
     min-height: 46px;
     font: inherit;
@@ -37,22 +46,40 @@ main > section:first-child h2 {
     border-radius: 10px;
 }
 
-.filtro select {
+.filtro select,
+.filtro input {
     width: 100%;
-    padding: 0.65rem 2.5rem 0.65rem 0.9rem;
+    padding: 0.65rem 0.9rem;
     color: var(--texto);
     border: 1px solid rgba(155, 92, 255, 0.4);
     outline: none;
     background-color: #111329;
 }
 
-.filtro select:focus {
+.filtro select:focus,
+.filtro input:focus {
     border-color: var(--cian);
     box-shadow: 0 0 0 3px rgba(45, 226, 230, 0.12);
 }
 
 .filtro button {
     padding: 0.65rem 1.5rem;
+}
+
+.acciones-filtro {
+    display: flex;
+    grid-column: 1 / -1;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    align-items: center;
+    justify-content: flex-end;
+    padding-top: 0.45rem;
+}
+
+.acciones-filtro button,
+.acciones-filtro .boton-secundario {
+    min-height: 46px;
+    min-width: 180px;
 }
 
 .grid-productos {
@@ -150,11 +177,7 @@ main > section:first-child h2 {
     }
 
     .filtro {
-        grid-template-columns: 1fr auto;
-    }
-
-    .filtro label {
-        grid-column: 1 / -1;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
@@ -172,8 +195,13 @@ main > section:first-child h2 {
         grid-template-columns: 1fr;
     }
 
-    .filtro label {
-        grid-column: auto;
+    .acciones-filtro {
+        justify-content: stretch;
+    }
+
+    .acciones-filtro button,
+    .acciones-filtro .boton-secundario {
+        width: 100%;
     }
 
     .tarjeta img {

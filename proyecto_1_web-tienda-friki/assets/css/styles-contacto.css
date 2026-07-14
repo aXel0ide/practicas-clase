@@ -1,8 +1,12 @@
 main {
-    width: min(900px, calc(100% - 2rem));
+    width: min(1100px, calc(100% - 2rem));
+    display: grid;
+    grid-template-columns: minmax(280px, 0.8fr) minmax(320px, 1.2fr);
+    gap: 1.5rem;
+    align-items: start;
 }
 
-main > section:first-child {
+main > section {
     position: relative;
     overflow: hidden;
     padding: 2rem;
@@ -12,7 +16,7 @@ main > section:first-child {
     box-shadow: var(--sombra);
 }
 
-main > section:first-child::before {
+main > section::before {
     position: absolute;
     top: 0;
     left: 0;
@@ -28,6 +32,40 @@ main h2 {
     color: #fff;
     font-size: clamp(1.35rem, 3vw, 2rem);
     letter-spacing: -0.02em;
+}
+
+.datos-contacto address {
+    font-style: normal;
+}
+
+.datos-contacto p {
+    margin: 0 0 0.65rem;
+    color: var(--texto-suave);
+    font-weight: 600;
+}
+
+.datos-contacto a {
+    color: var(--cian);
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.datos-contacto h3 {
+    margin: 1.6rem 0 0.7rem;
+    color: #fff;
+    font-size: 1.05rem;
+}
+
+.redes-sociales {
+    display: grid;
+    gap: 0.55rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.redes-sociales li {
+    color: var(--texto-suave);
 }
 
 .formulario {
@@ -112,7 +150,8 @@ main h2 {
 
 @media (max-width: 600px) {
     main {
-        width: min(100% - 1.25rem, 900px);
+        width: min(100% - 1.25rem, 1100px);
+        grid-template-columns: 1fr;
     }
 
     main > section:first-child {

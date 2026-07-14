@@ -37,11 +37,9 @@
     <nav>
         <a href="./index.php">Inicio</a>
         <a href="./productos.php">Productos</a>
+        <a href="./videojuegos.php">Videojuegos</a>
         <a href="./novedades.php">Novedades</a>
         <a href="./contacto.php">Contacto</a>
-        <a href="./api_json.php">JSON</a>
-        <a href="./api_xml.php">XML</a>
-        <a href="./exportar_csv.php">CSV</a>
     </nav>
     <main>
         <section>
@@ -93,11 +91,14 @@
                     </article>
                     <?php $contador++; ?>
                     <?php } ?>
-                    <button class="carrusel-btn anterior"><</button>
-                    <button class="carrusel-btn siguiente">></button>
+                    <button class="carrusel-btn anterior" aria-label="Novedad anterior"><</button>
+                    <button class="carrusel-btn siguiente" aria-label="Novedad siguiente">></button>
             </div>
         </section>
     </main>
+    <footer>
+        <p>Tienda Friki Web - Proyecto PHP y MariaDB</p>
+    </footer>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>

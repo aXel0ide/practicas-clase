@@ -2,12 +2,13 @@
     require "./config/conexion.php";
 
     $producto = null;
+    $datos_videojuego = null;
     $error = null;
 
     $id = $_GET["id"] ?? "";
 
-    if($id == "" && !is_numeric($id)){
-        $error = "Producto no válido";
+    if($id == "" || !is_numeric($id)){
+        $error = "Producto no valido";
     }else{
         $id = (int)$id;
 
@@ -26,6 +27,20 @@
 
         if($resultado && $resultado->num_rows === 1){
             $producto = $resultado->fetch_assoc();
+
+            $sql_videojuego = "
+                select pv.nombre as plataforma, gv.nombre as genero, v.pegi,
+                v.desarrolladora, v.anio_lanzamiento, v.formato, v.multijugador
+                from videojuegos v
+                inner join plataformas_videojuego pv on v.plataforma_id = pv.id
+                inner join generos_videojuego gv on v.genero_id = gv.id
+                where v.producto_id = ?";
+
+            $stmt_video = $conexion->prepare($sql_videojuego);
+            $stmt_video->bind_param("i", $id);
+            $stmt_video->execute();
+            $res_video = $stmt_video->get_result();
+            $datos_videojuego = $res_video->fetch_assoc();
         }else{
             $error = "No se ha encontrado el producto solicitado.";
         }
@@ -33,13 +48,13 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ficha Detallada</title>
-        <link rel="stylesheet" href="./assets/css/styles.css">
-        <link rel="stylesheet" href="./assets/css/styles-detalle.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/styles-detalle.css">
 </head>
 <body>
     <header>
@@ -47,12 +62,15 @@
     </header>
     <nav>
         <a href="./index.php">Inicio</a>
+        <a href="./productos.php">Productos</a>
+        <a href="./videojuegos.php">Videojuegos</a>
+        <a href="./novedades.php">Novedades</a>
         <a href="./contacto.php">Contacto</a>
     </nav>
     <main>
         <?php if(isset($error)){ ?>
             <p class="error" role="alert"><?php echo htmlspecialchars($error); ?></p>
-            <a class="boton" href="./productos.php">Volver al catálogo</a>
+            <a class="boton" href="./productos.php">Volver al catalogo</a>
         <?php }else{ ?>
             <?php $imagen = $producto["imagen"] != "" ? $producto["imagen"] : "sin-imagen.jpg"; ?>
             <article class="detalle-producto">
@@ -64,19 +82,37 @@
                     <p><?php echo htmlspecialchars($producto["descripcion"]); ?></p>
 
                     <ul class="datos-producto">
-                        <li><strong>Categoría: </strong> <?php echo htmlspecialchars($producto["categoria"]); ?></li>
+                        <li><strong>Categoria: </strong> <?php echo htmlspecialchars($producto["categoria"]); ?></li>
                         <li><strong>Editorial/Proveedor: </strong><?php echo htmlspecialchars($producto["editorial"]); ?></li>
-                        <li><strong>Estado: </strong><?php echo htmlspecialchars($producto["estado"]) ?></li>
-                        <li><strong>Precio: </strong><?php echo htmlspecialchars($producto["precio"]); ?> €</li>
+                        <li><strong>Estado: </strong><?php echo htmlspecialchars($producto["estado"]); ?></li>
+                        <li><strong>Precio: </strong><?php echo htmlspecialchars($producto["precio"]); ?> &euro;</li>
                     </ul>
+
+                    <?php if($datos_videojuego){ ?>
+                        <section class="bloque-videojuego">
+                            <h2>Datos del videojuego</h2>
+                            <ul>
+                                <li><strong>Plataforma:</strong> <?php echo htmlspecialchars($datos_videojuego["plataforma"]); ?></li>
+                                <li><strong>Genero:</strong> <?php echo htmlspecialchars($datos_videojuego["genero"]); ?></li>
+                                <li><strong>PEGI:</strong> <?php echo htmlspecialchars($datos_videojuego["pegi"]); ?></li>
+                                <li><strong>Desarrolladora:</strong> <?php echo htmlspecialchars($datos_videojuego["desarrolladora"]); ?></li>
+                                <li><strong>Año:</strong> <?php echo htmlspecialchars($datos_videojuego["anio_lanzamiento"]); ?></li>
+                                <li><strong>Formato:</strong> <?php echo htmlspecialchars($datos_videojuego["formato"]); ?></li>
+                                <li><strong>Multijugador:</strong> <?php echo $datos_videojuego["multijugador"] ? "Si" : "No"; ?></li>
+                            </ul>
+                        </section>
+                    <?php } ?>
 
                     <button onclick="return confirmarImpresion() && window.print()">Imprimir ficha/Guardar como PDF</button>
 
-                    <a class="boton-secundario" href="./productos.php">Volver al catálogo</a>
+                    <a class="boton-secundario" href="./productos.php">Volver al catalogo</a>
                 </div>
             </article>
         <?php } ?>    
     </main>
+    <footer>
+        <p>Tienda Friki Web - Proyecto PHP y MariaDB</p>
+    </footer>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>

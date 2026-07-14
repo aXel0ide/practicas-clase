@@ -2,8 +2,9 @@
     require "./config/conexion.php";
 
     $sql_novedades = "
-        select n.producto_id, p.nombre, p.imagen, n.titulo, n.subtitulo, n.texto_boton, n.activo
-        from productos p inner join novedades n on p.id = n.producto_id
+        select n.producto_id, p.nombre, p.imagen, n.titulo, n.subtitulo,
+        n.imagen_banner, n.texto_boton
+        from novedades n left join productos p on n.producto_id = p.id
         where n.activo = 1
         order by n.orden asc, n.fecha_inicio desc";
     
@@ -26,28 +27,40 @@
     <nav>
         <a href="./index.php">Inicio</a>
         <a href="./productos.php">Productos</a>
+        <a href="./videojuegos.php">Videojuegos</a>
+        <a href="./novedades.php">Novedades</a>
         <a href="./contacto.php">Contacto</a>
-        <a href="./exportar_csv.php">CSV</a>
     </nav>
     <main>
         <h2>Ultimas novedades</h2>
-        <p>Descubre las últimas novedades de la tienda: </p>
+        <p>Descubre lanzamientos, colecciones destacadas y propuestas especiales para fans de los videojuegos, el comic y el coleccionismo.</p>
+
         <section>
             <?php if($novedades && $novedades->num_rows > 0){ ?>
                 <?php while($novedad = $novedades->fetch_assoc()){ ?>
-                    <?php $enlace = $novedad["producto_id"] != "" ? "./detalle.php?id=" . $novedad["producto_id"] : "./productos.php"; ?>
+                    <?php
+                        $tiene_producto = $novedad["producto_id"] != "";
+                        $enlace = $tiene_producto ? "./detalle.php?id=" . $novedad["producto_id"] : "./productos.php";
+                        $imagen = $tiene_producto && $novedad["imagen"] != "" ? $novedad["imagen"] : $novedad["imagen_banner"];
+                        $carpeta = $tiene_producto && $novedad["imagen"] != "" ? "productos" : "novedades";
+                    ?>
                     <article class="novedad">
+                        <img src="./assets/img/<?php echo $carpeta; ?>/<?php echo htmlspecialchars($imagen); ?>" alt="Imagen de <?php echo htmlspecialchars($novedad["titulo"]); ?>">
                         <h3><?php echo htmlspecialchars($novedad["titulo"]); ?></h3>
                         <p><?php echo htmlspecialchars($novedad["subtitulo"]); ?></p>
-                        <img src="./assets/img/productos/<?php echo htmlspecialchars($novedad["imagen"]); ?>" alt="Imagen de <?php echo htmlspecialchars($novedad["nombre"]); ?>">
-                        <p><strong><?php echo htmlspecialchars($novedad["nombre"]); ?></strong></p>
+                        <?php if($tiene_producto){ ?>
+                            <p><strong><?php echo htmlspecialchars($novedad["nombre"]); ?></strong></p>
+                        <?php } ?>
                         <a class="boton" href="<?php echo htmlspecialchars($enlace); ?>"><?php echo htmlspecialchars($novedad["texto_boton"]); ?></a>
                     </article>
-                <?php }?>     
+                <?php } ?>     
             <?php }else{ ?>
                 <p class="aviso">No hay novedades para mostrar actualmente.</p>
             <?php } ?>
         </section>
     </main>
+    <footer>
+        <p>Tienda Friki Web - Proyecto PHP y MariaDB</p>
+    </footer>
 </body>
 </html>
