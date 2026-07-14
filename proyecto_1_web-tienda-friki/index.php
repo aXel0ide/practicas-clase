@@ -11,6 +11,14 @@
         limit 4";
 
     $destacados = $conexion->query($sql);
+
+    $sql_novedades = "
+        select n.id, n.producto_id, n.titulo, n.subtitulo, n.imagen_banner, n.texto_boton
+        from novedades n
+        where n.activo = 1
+        order by n.orden asc, n.fecha_inicio desc";
+
+    $novedades = $conexion->query($sql_novedades);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -59,6 +67,33 @@
                 <?php }else{ ?>
                     <p>No hay productos destacados.</p>
                 <?php } ?>
+            </div>
+        </section>
+        <section class="carrusel">
+            <h2>Novedades Destacadas</h2>
+
+            <div class="carrusel-contenedor">
+                <?php $contador = 0; ?>
+                <?php while($nov = $novedades->fetch_assoc()){ ?>
+                    <?php 
+                        $clase = $contador == 0 ? "slide activo" : "slide";
+                        $banner = $nov["imagen_banner"] != "" ? $nov["imagen_banner"] : "banner_generico.jpg";
+                        $enlace = $nov["producto_id"] != "" ? "detalle.php?id=" . $nov["producto_id"] : "novedades.php";
+                    ?>
+
+                    <article class="<?php echo $clase; ?>">
+                        <img src="./assets/img/novedades/<?php echo htmlspecialchars($banner); ?>" alt="<?php echo htmlspecialchars($nov["titulo"]); ?>">
+                        
+                        <div class="slide-texto">
+                            <h3><?php echo htmlspecialchars($nov["titulo"]); ?></h3>
+                            <p><?php echo htmlspecialchars($nov["subtitulo"]); ?></p>
+                            <a class="boton" href="<?php echo htmlspecialchars($enlace); ?>"><?php echo htmlspecialchars($nov["texto_boton"]); ?></a>
+                        </div>
+                    </article>
+                    <?php $contador++; ?>
+                    <?php } ?>
+                    <button class="carrusel-btn anterior"><</button>
+                    <button class="carrusel-btn siguiente">></button>
             </div>
         </section>
     </main>

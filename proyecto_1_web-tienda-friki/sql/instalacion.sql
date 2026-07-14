@@ -222,6 +222,7 @@ insert into productos(nombre, descripcion, precio, stock, imagen, destacado, cat
 ('Advance Wars', 'Juego de estrategia por turnos con combates militares.', 24.99, 4, 'advance_wars.jpg', 0, @cat_videojuego, @edit_nintendo, @estado_usado);
 
 /* GUARDAR LOS ID DE LOS PRODUCTOS INSERTADOS */
+set @prdo_black_sad = (select id from productos where nombre = 'Blacksad Integral' limit 1);
 set @prod_cyber = (select id from productos where nombre = 'Cyberpunk 2077' limit 1);
 set @prod_sons_forest = (select id from productos where nombre = 'Sons of the Forest'limit 1);
 set @prod_smash = (select id from productos where nombre = 'Super Smash Bros. Ultimate'limit 1);
@@ -239,3 +240,12 @@ insert into videojuegos(producto_id, plataforma_id, genero_id, pegi, desarrollad
 (@prod_ratchet, @plat_ps5, @genero_plataformas, 7, 'Insomniac Games', 2021, 'Físico', 0),
 (@prod_halo, @plat_xbox, @genero_accion, 16, '343 Industries', 2021, 'Físico', 1),
 (@prod_advance_wars, @plat_retro, @genero_estrategia, 7, 'Intelligent Systems', 2001, 'Físico', 1);
+
+/* DATOS PARA NOVEDADES */
+insert into novedades (producto_id, titulo, subtitulo, imagen_banner, texto_boton, activo, orden, fecha_inicio) values
+(@prdo_black_sad, 'Especial videojuegos frikis', 'Nuevos títulos de aventura, cómic y cultura retro.',
+'banner_videojuegos.jpg', 'Ver videojuego', 1, 1, curdate()),
+(null, 'Semana del cómic europeo', 'Astérix, Blacksad, Tintín y clásicos imprescindibles.', 'banner_comics.jpg',
+'Ver novedades', 1, 2, curdate()),
+(null, 'Merchandaising para coleccionistas.', 'Camisetas, figuras, pósters y productos exclusivos.',
+'banner_merchandaising.jpg', 'Ver colección', 1, 3, curdate());
