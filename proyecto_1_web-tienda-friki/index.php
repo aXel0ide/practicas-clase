@@ -39,6 +39,7 @@
         <a href="./productos.php">Productos</a>
         <a href="./videojuegos.php">Videojuegos</a>
         <a href="./novedades.php">Novedades</a>
+        <a href="./ofertas.php">Ofertas</a>
         <a href="./contacto.php">Contacto</a>
     </nav>
     <main>
@@ -94,6 +95,11 @@
                     <button class="carrusel-btn anterior" aria-label="Novedad anterior"><</button>
                     <button class="carrusel-btn siguiente" aria-label="Novedad siguiente">></button>
             </div>
+        </section>
+        <section class="aviso-ofretas">
+            <h2>Ofertas frikis de la semana</h2>
+            <p>Productos con precio especial y stock disponible.</p>
+            <a href="./ofertas.php" class="boton">Ver ofertas</a>
         </section>
     </main>
     <footer>
