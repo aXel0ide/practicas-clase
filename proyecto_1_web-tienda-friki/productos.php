@@ -97,6 +97,7 @@
         <a href="./videojuegos.php">Videojuegos</a>
         <a href="./novedades.php">Novedades</a>
         <a href="./ofertas.php">Ofertas</a>
+        <a href="./stock_bajo.php">Productos con Stock Bajo</a>
         <a href="./contacto.php">Contacto</a>
     </nav>
     <main>

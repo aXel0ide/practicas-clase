@@ -40,6 +40,7 @@
         <a href="./videojuegos.php">Videojuegos</a>
         <a href="./novedades.php">Novedades</a>
         <a href="./ofertas.php">Ofertas</a>
+        <a href="./stock_bajo.php">Productos con Stock Bajo</a>
         <a href="./contacto.php">Contacto</a>
     </nav>
     <main>
@@ -100,6 +101,11 @@
             <h2>Ofertas frikis de la semana</h2>
             <p>Productos con precio especial y stock disponible.</p>
             <a href="./ofertas.php" class="boton">Ver ofertas</a>
+        </section>
+        <section class="aviso-stock">
+            <h2>Productos con pocas unides</h2>
+            <p>Revisa los productos que estan a punto de agotarse.</p>
+            <a class="boton" href="./stock_bajo.php">Ver stock bajo</a>
         </section>
     </main>
     <footer>
